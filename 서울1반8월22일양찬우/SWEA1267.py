@@ -40,62 +40,9 @@ for T in range(1,11):
         print("{0}".format(i),end=' ')
     print()
             
-    visited = [False] * (V+1)
-    visited[v]
+    # visited = [False] * (V+1)
+    # visited[v]
                 
 
 
 
-"""
-#갓상우.. 
-def dfs(v):
-    visit[v] = 1
-    [dfs(w) for w in adj_list[v] if not visit[w]]
-    ans.append(v)
- 
-for t in range(10):
-    V, E = map(int, input().split())
-    *info, = map(int, input().split())
-    adj_list = [[] for _ in range(V + 1)]
-    for i in range(0, 2 * E, 2):
-        adj_list[info[i + 1]].append(info[i])
-    ans = []
-    visit = [0] * (V + 1)
-    [dfs(i) for i in range(1, V + 1) if not visit[i]]
-    print(f"#{t+1} {' '.join(map(str, ans))}")
-
-
-"""
-
-
-
-def dfs(graph, start_node):
-    visit = []
-    stack = []
-    stack.append(start_node)
-
-    while stack:
-        node = stack.pop()
-        if node not in visit:
-            visit.append(node)
-            stack.extend(graph)
-    return visit
-
-for T in range(3):
-    V,E = map(int,input().split())
-    matN = list(map(int,input().split()))
-    mat = [[0 for _ in range(V+1)] for _ in range(V+1)]
-    for i in range(E):
-        mat[matN[2*i+1]][matN[2*i]] = 1
-    reMat= list(map(list, zip(*mat)))
-    dfsDic = {}
-    end = []
-
-    for j in range(1,len(reMat)):
-        if reMat[j]==1:
-            dfsDic[j] = j
-        if dfsDic[j] == 0 :
-            end.append(j)
-
-    for k in end:
-        print(dfs(dfsDic,k))
