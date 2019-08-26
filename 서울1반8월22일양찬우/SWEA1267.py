@@ -39,10 +39,7 @@ for T in range(1,11):
     for i in visited:
         print("{0}".format(i),end=' ')
     print()
-            
-    # visited = [False] * (V+1)
-    # visited[v]
-                
+
 
 
 

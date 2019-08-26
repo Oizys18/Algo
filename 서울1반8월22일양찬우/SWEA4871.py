@@ -3,6 +3,11 @@
 import sys
 sys.stdin = open('input.txt','r')
 
+"""
+타겟 정점 판별이 중요 
+"""
+
+
 def dfs(graph, start_node):
     visit = []
     stack = []
