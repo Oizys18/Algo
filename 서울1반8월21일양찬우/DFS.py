@@ -18,7 +18,7 @@ dfsDic = {
     7: [3,6],
 }
 
-
+ 
 
 def dfs(graph, start_node):
     visit = []
@@ -30,6 +30,7 @@ def dfs(graph, start_node):
         if node not in visit:
             visit.append(node)
             stack.extend(graph[node])
+            
     return visit
 
 print(dfs(dfsDic,1))
