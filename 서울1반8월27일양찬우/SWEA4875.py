@@ -9,59 +9,36 @@ def bt(start):
         node = stack.pop()
         if node not in visit:
             visit.append(node)
-            if pathFinder(node):
-                stack.extend(pathFinder(node))
+            stack.extend(pathFinder(node[0],node[1]))
+            print(visit)
     return visit
+
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
 
 def pathFinder(x,y):
     path = []
-    if y > 0 and y < N - 1:
-        while y > 0 and y < N - 1:
-            if x > 0 and x < N - 1 :
-                while x > 0 and y < N - 1:
-                    
-
-            
-            
-
-
-
+    if (x < N - 1 and x > 0) and (y < N -1 and y > 0):
+        while (x < N - 1 and x > 0) and (y < N -1 and y > 0):
+            for i in range(4):
+                if mat[x+dx[i]][y+dy[i]] in '02' and (x+dx[i],y+dy[i]) not in path:
+                    path.append((x+dx[i],y+dy[i]))
+            return path
+    if x == N - 1 or x == 0:
+        while x == N - 1 or x == 0:
+            for i in [2,3]:
+                if mat[x][y+dy[i]] in '02' and (x,y+dy[i]) not in path:
+                    path.append((x,y+dy[i]))
+            return path
+    if y == 0 or y == N - 1:
+        while y == 0 or y == N - 1:
+            for i in [0,1]:
+                if mat[x+dx[i]][y] in '02' and (x+dx[i],y) not in path:
+                    path.append((x+dx[i],y))
+            return path
 
     return path
-    
-    
-    
-    
-    
-    #adj_list = [mat[node[0]+1][node[1]],mat[node[0]][node[1]+1],mat[node[0]][node[1]-1]]
-
-    # 우, 하 탐색
-    # if node[1] == 0:
-    #     if mat[node[0]][node[1]+1] in '02':
-    #         zeros.append((node[0],node[1]+1))
-    #     if mat[node[0]+1][node[1]] in '02':
-    #         zeros.append((node[0]+1,node[1]))
-    # elif node[1] == N-1:
-    #     if mat[node[0]][node[1]-1] in '02':
-    #         zeros.append((node[0],node[1]-1))
-    #     if mat[node[0]+1][node[1]] in '02':
-    #         zeros.append((node[0]+1,node[1]))
-
-    # elif node[0] == N-1:
-    #     if mat[node[0]][node[1]+1] in '02':
-    #         zeros.append((node[0],node[1]+1))
-    #     if mat[node[0]][node[1]-1] in '02':
-    #         zeros.append((node[0],node[1]-1))
-    # else:
-    #     if mat[node[0]][node[1]+1] in '02':
-    #         zeros.append((node[0],node[1]+1))
-    #     if mat[node[0]+1][node[1]] in '02':
-    #         zeros.append((node[0]+1,node[1]))
-    #     if mat[node[0]][node[1]-1] in '02':
-    #         zeros.append((node[0],node[1]-1))
-    # return zeros
-
-
 
 
 
@@ -76,14 +53,10 @@ for T in range(int(input())):
                 start = (i,j)
             if mat[i][j] == '2':
                 end = (i,j)
-    print(start, end)
-
-    res = [mat[i[0]][i[1]] for i in bt(start)]
-
+    res = bt(start)
     result = 0
-    for j in res:
-        if j == '2':
-            result = 1
+    if end in res:
+        result = 1
 
     print("#{0} {1}".format(T+1,result))
     
