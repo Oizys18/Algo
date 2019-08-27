@@ -22,3 +22,15 @@ for T in range(int(input())):
                 if word == word[::-1]:
                     result = word
     print("#{0} {1}".format(T+1,result))
+
+
+
+"""
+word == word[::-1]을 하는 것보다, 
+
+word를 반으로 나눠서 (len(word)/2)
+0부터 len(word)/2 까지 반복하며 
+맨 앞과 맨 뒤 비교, 
+앞에서 두번째와 뒤에서 두번째 비교, 
+요런식으로 반복하는 것이 더 메모리 적게 먹는다. 
+"""

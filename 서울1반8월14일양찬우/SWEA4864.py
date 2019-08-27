@@ -1,4 +1,4 @@
-#SWEA 4864
+#SWEA 4864 문자열 비교 
 
 
 for T in range(int(input())):
@@ -8,3 +8,6 @@ for T in range(int(input())):
         print("#{0} {1}".format(T+1,1))
     else:
         print("#{0} {1}".format(T+1,0))
+
+
+

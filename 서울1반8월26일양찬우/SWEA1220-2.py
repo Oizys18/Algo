@@ -94,6 +94,26 @@ for T in range(1,11):
     print("#{0} {1}".format(T,result))
 
 
+"""
+ans = 0
+for x in range(100):
+    flag = 0
+    for y in range(100):
+        if mat[y][x] == 1: flag = 1
+        elif mat[y][x] == 2 and flag == 1:
+            ans += 1
+            flag = 0
+"""
+
+"""
+flag 변수 만들어둔다음 
+1을 찾으면 flag 1로 바꾸고 
+1을 찾은 상태에서 2를 찾으면 ans를 1을 추가한다. 
+"""
+
+
+
+
 
 
 """
