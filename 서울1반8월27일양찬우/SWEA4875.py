@@ -38,8 +38,6 @@ def pathFinder(x,y):
                     path.append((x+dx[i],y))
             return path
 
-    return path
-
 
 
 for T in range(int(input())):
