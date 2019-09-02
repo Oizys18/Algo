@@ -8,7 +8,6 @@ for T in range(int(input())):
     # print(cards)
     stack = []
     stack.append(cards)
-
     while stack:
         card = stack.pop()
         print(card)
