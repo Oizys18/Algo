@@ -1,0 +1,61 @@
+# import sys
+# sys.stdin = open("input.txt", "r")
+
+def DFS(v, END):
+    visited = [0] * (V + 1)
+    stack = []
+
+    stack.append(v)
+
+    while stack:
+        v = stack.pop(-1)
+
+        if visited[v] != 1:
+            visited[v] = 1
+            if v == END: return 1
+            for i in range(1, V + 1):
+                if G[v][i] and not visited[i]:
+                    stack.append(i)
+    return 0
+
+
+T = int(input())
+for tc in range(1, T + 1):
+    V, E = map(int, input().split())
+
+    G = [[0] * (V + 1) for _ in range(V + 1)]
+
+    for _ in range(E):
+        s, t = map(int, input().split())
+        G[s][t] = 1
+    start, end = map(int, input().split())
+
+    print('#%d' % tc, DFS(start, end))
+
+
+
+# def DFSr(v):
+#     global found
+#     if v == end : found = 1; return
+#     visited[v] = True
+# 
+#     for i in range(1, V + 1):
+#         if G[v][i] and not visited[i] and not found:
+#             DFSr(i)
+# 
+# 
+# T = int(input())
+# for tc in range(1, T + 1):
+#     V, E = map(int, input().split())
+#     visited = [0] * (V + 1)
+#     G = [[0] * (V + 1) for _ in range(V + 1)]
+# 
+#     for _ in range(E):
+#         s, t = map(int, input().split())
+#         G[s][t] = 1
+#     start, end = map(int, input().split())
+# 
+#     found = 0
+#     DFSr(start)
+#     print('#%d'%tc, found)
+# 
