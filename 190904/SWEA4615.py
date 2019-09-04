@@ -8,65 +8,36 @@ sys.stdin = open('input2.txt','r')
 
 def isStone(x, y):
     if (x < N + 1 and x > 0) and (y < N + 1 and y > 0):
-        if mat[x][y] != 0:
+        if mat[x][y]:
             return True
         else:
             return False
     else:
         return False
-
-def stone(y, x, color):
-    dx = [0,0,1,-1,1,-1,1,-1]
-    dy = [-1,1,0,0,1,-1,-1,1]
-    mat[x][y] = color
+def stone(y, x, c):
+    mat[x][y] = c
     temp = []
-    if color == 1:
-        for i in range(8):
-            newX = x + dx[i]
-            newY = y + dy[i]
-            if isStone(newX, newY):
-                if mat[newX][newY] == 2:
-                    temp.append((newX,newY))
-                    while True:
-                        newX += dx[i]
-                        newY += dy[i]
-                        if isStone(newX, newY):
-                            if mat[newX][newY] == 1:
-                                break
-                            elif mat[newX][newY] == 2:
-                                temp.append((newX,newY))
-                            elif mat[newX][newY] == 0:
-                                temp = []
-                                break
-                        else:
+    if c == 1:
+        cns = 2
+    else:
+        cns = 1
+    for dx,dy in (0,-1), (0,1), (1,0), (-1,0), (1,1), (-1,-1), (1,-1), (-1,1):
+        newX, newY = x + dx, y + dy
+        if isStone(newX, newY):
+            if mat[newX][newY] == cns:
+                while True:
+                    if isStone(newX, newY):
+                        if mat[newX][newY] == c:
                             break
-                    for xx,yy in temp:
-                        mat[xx][yy] = 1
-
-    # 백돌 
-    elif color == 2:
-        for i in range(8):
-            newX = x + dx[i]
-            newY = y + dy[i]
-            if isStone(newX, newY):
-                if mat[newX][newY] == 1:
-                    temp.append((newX,newY))
-                    while True:
-                        newX += dx[i]
-                        newY += dy[i]
-                        if isStone(newX, newY):
-                            if mat[newX][newY] == 2:
-                                break
-                            elif mat[newX][newY] == 1:
-                                temp.append((newX,newY))
-                            elif mat[newX][newY] == 0:
-                                temp = []
-                                break
-                        else:
-                            break
-                    for xx,yy in temp:
-                        mat[xx][yy] = 2
-    
+                        elif mat[newX][newY] == cns:
+                            temp.append((newX,newY))
+                    else:
+                        temp = []
+                        break
+                    newX += dx
+                    newY += dy 
+                for xx,yy in temp:
+                    mat[xx][yy] = c
 
 for T in range(int(input())):
     N, M = map(int,input().split())
@@ -76,17 +47,14 @@ for T in range(int(input())):
     mat[md+1][md+1] = 2
     mat[md+1][md] = 1
     mat[md][md+1] = 1
-    pprint(mat)
-
-    for _ in range(N):
+    for _ in range(M):
         a,b,c = map(int,input().split())
         stone(a,b,c)
-        pprint(mat)
-    
+
     B = 0
     W = 0
-    for x in range(N):
-        for y in range(N):
+    for x in range(1,N+1):
+        for y in range(1,N+1):
             if mat[x][y] == 2:
                 W += 1
             elif mat[x][y] == 1:
