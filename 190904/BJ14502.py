@@ -27,7 +27,6 @@ def BFS(x, y):
                 newY = y + dy
                 if isPath(newX, newY):
                     queue.append((newX,newY))
-    # pprint(mat)
 
 mat = [list(map(int,input().split())) for _ in range(X)]
 zeros = []
