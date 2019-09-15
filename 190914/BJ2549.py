@@ -25,7 +25,7 @@ def moveD(x,y,n):
 
     pass
 
-
+"""
 mat = [list(map(int,input().split())) for _ in range(4)]
 mat2 = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
 temp = {}
@@ -51,11 +51,11 @@ for x in range(4):
             elif y > y2:
                 dy = 4 - (y - y2)
             temp2[x][y] = (dx,dy)
-pprint(temp2)
+pprint(temp2)"""
 
 
 
-"""
+
 for x in range(4):
     for y in range(4):
         if mat[x][y] != mat2[x][y]:
@@ -127,4 +127,3 @@ for move in mv:
     for m in move:
         print(m,end=' ')
     print()
-"""
