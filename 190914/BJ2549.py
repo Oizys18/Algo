@@ -5,9 +5,8 @@ from pprint import pprint
 sys.stdin = open('input.txt','r')
 
 cnt = 0
-
 # 오른쪽으로 움직이는 함수, x 행을 n번 움직인다. 
-def moveR(x,n):
+def moveR(x, n):
     global cnt
     tempX = mat[x]
     cnt += n
@@ -22,10 +21,9 @@ def moveR(x,n):
 def moveD(x,y,n):
     global cnt
     tempY = [mat[x][y],]
-
     pass
 
-"""
+
 mat = [list(map(int,input().split())) for _ in range(4)]
 mat2 = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
 temp = {}
@@ -51,10 +49,7 @@ for x in range(4):
             elif y > y2:
                 dy = 4 - (y - y2)
             temp2[x][y] = (dx,dy)
-pprint(temp2)"""
-
-
-
+pprint(temp2)
 
 for x in range(4):
     for y in range(4):
