@@ -43,6 +43,9 @@ for T in range(int(input())):
     temp = []
     flag = 0
 
+
+
+
     # # pp(list(itertools.permutations(range(N),N)))
     # for i in itertools.permutations(range(N),N):
     #     print(list(i))
@@ -71,27 +74,27 @@ for T in range(int(input())):
 
 
 
-# """
-#     pp(mat2)
-#     visit = [0]*N
-#     temp = 1
-#     for i in mat2:
-#         temp *= max(i)/100
-#     temp *= 100
-#     print(temp)
-# """
-# """
-# # 큰 것부터 하나씩 찾기! 
-# visit = [0]*N
-# """
-#     
+
+    pp(mat2)
+    visit = [0]*N
+    temp = 1
+    for i in mat2:
+        temp *= max(i)/100
+    temp *= 100
+    print(temp)
+"""
+"""
+# 큰 것부터 하나씩 찾기! 
+visit = [0]*N
+"""
     
-# """    # pp(mat)
-# line = [1,2,3,4]
-# visit = [0,0,1,1]
-# mNum = 0
-# for x in range(4):
-#     if visit[x] == 0:
-#         if line[x] > mNum:
-#             mNum = line[x]
-# print(mNum)"""
+    
+"""    # pp(mat)
+line = [1,2,3,4]
+visit = [0,0,1,1]
+mNum = 0
+for x in range(4):
+    if visit[x] == 0:
+        if line[x] > mNum:
+            mNum = line[x]
+print(mNum)
