@@ -3,7 +3,7 @@ sys.stdin = open('input.txt', 'r')
 from pprint import pprint as pp 
 import itertools
 import copy
-
+"""
 def findBest():
     global collections
     global visit
@@ -25,7 +25,6 @@ def findBest():
                 mat[i][oriIdx] = maxNum
                 mat2[oriIdx][i] = maxNum
 
-    
 for T in range(int(input())):
     N = int(input())
     mat = [list(map(lambda x : int(x)/100,input().split())) for _ in range(N)]
@@ -42,8 +41,6 @@ for T in range(int(input())):
     poss = 1
     temp = []
     flag = 0
-
-
 
 
     # # pp(list(itertools.permutations(range(N),N)))
@@ -69,32 +66,33 @@ for T in range(int(input())):
     # print(possbest)
     print("#{} {}".format(T+1,format(possbest*100,'.6f')))
 
-
-
-
-
-
-
-    pp(mat2)
-    visit = [0]*N
-    temp = 1
-    for i in mat2:
-        temp *= max(i)/100
-    temp *= 100
-    print(temp)
 """
-"""
-# 큰 것부터 하나씩 찾기! 
-visit = [0]*N
-"""
+
+for i in list(itertools.permutations(range(10),5)):
+    print(i)
+
+
+
+#     pp(mat2)
+#     visit = [0]*N
+#     temp = 1
+#     for i in mat2:
+#         temp *= max(i)/100
+#     temp *= 100
+#     print(temp)
+# """
+# """
+# # 큰 것부터 하나씩 찾기! 
+# visit = [0]*N
+# """
     
     
-"""    # pp(mat)
-line = [1,2,3,4]
-visit = [0,0,1,1]
-mNum = 0
-for x in range(4):
-    if visit[x] == 0:
-        if line[x] > mNum:
-            mNum = line[x]
-print(mNum)
+# """    # pp(mat)
+# line = [1,2,3,4]
+# visit = [0,0,1,1]
+# mNum = 0
+# for x in range(4):
+#     if visit[x] == 0:
+#         if line[x] > mNum:
+#             mNum = line[x]
+# print(mNum)
