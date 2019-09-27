@@ -18,7 +18,6 @@ def BG(li):
         elif i == 0:
             cnt = 0
     return False
-    
 
 for T in range(int(input())):
     line = list(map(int,input().split()))
@@ -38,3 +37,4 @@ for T in range(int(input())):
             res = 2
             break
     print("#{} {}".format(T+1,res))
+20

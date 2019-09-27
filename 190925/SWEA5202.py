@@ -35,20 +35,3 @@ for T in range(int(input())):
         visit = [k]
         DFS(k)
     print("#{} {}".format(T+1, max(res)))
-    #     if res > result:
-    #         result = res
-    # print(result)
-
-
-
-
-
-
-    # result = 0
-    # for k in range(N):
-    #     sR = stack(arr[k])
-    #     res = len(sR)
-    #     if res > result:
-    #         print(sR)
-    #         result = res
-    # print(result)
