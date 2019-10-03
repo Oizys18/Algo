@@ -1,6 +1,9 @@
 import sys
 sys.stdin = open('input.txt','r')
 import itertools
+
+
+
 for T in range(int(input())):
     N = int(input())
     mat = [list(map(int,input().split())) for _ in range(N)]

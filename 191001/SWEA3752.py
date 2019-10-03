@@ -1,63 +1,28 @@
 import sys
-sys.stdin = open('input4.txt','r')
+sys.stdin = open('input3.txt','r')
 import itertools
-# def perm(k):
-#     if k == N:
-#         print(scores)
-#     else:
-#         for i in range(k, N):
-#             scores[k], scores[i] = scores[i], scores[k]
-#             perm(k + 1)
-#             scores[k], scores[i] = scores[i], scores[k]
+from pprint import pprint as pp 
 
-def H_r(k, s):
-    if k == R: 
-        if not res[sum(t)]:
-            res[sum(t)] = 1
-            print(sum(t))
-        # print(t)
+
+def solve(k, s):
+    if visited[k][s]: return
+    visited[k][s] = 1
+    if k == N:
+        return
     else:
-        for i in range(s, N):
-            t[k] = a[i]
-            if res[sum(t)] and k == R:
-                continue
-            # else:
-            #     continue
-            H_r(k + 1, i)
-
-
-
-
-
-# def comb_r(k, s):
-#     global flag
-#     if k == R: 
-#         if not res[sum(t)]:
-#             res[sum(t)] = 1
-#             print(t)
-#     else:
-#         for i in range(s, N + (k - R) + 1):
-#             if flag == 1:
-#                 continue
-#             if t[k] == a[i]:
-#                 flag = 1
-#             t[k] = a[i]
-#             comb_r(k + 1, i + 1)
-
-
-
-for T in range(int(input())):
+        # print(s)
+        solve(k + 1, s)
+        # print(s + scores[k])
+        solve(k + 1, s + scores[k])
+        
+for tc in range(1, int(input()) + 1):
     N = int(input())
-    a = [*map(int,input().split())]
-    temp = 0
-    res = [0]*(10000)
-    # for k in range(N + 1):
-    R = N
-    t = [0] * R
-    H_r(0, 0)
+    scores = list(map(int, input().split()))
 
-    print("#{} {}".format(T+1,sum(res)))
-
+    visited = [[0] * (sum(scores) + 1) for _ in range(N + 1)]
+    solve(0, 0)
+    pp(visited)
+    print('#%d'%tc, sum(visited[N]))
 
 
 """
@@ -72,3 +37,25 @@ for T in range(int(input())):
 #9 5158
 #10 4847
 """
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
