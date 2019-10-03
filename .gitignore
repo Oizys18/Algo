@@ -3,6 +3,13 @@
 # Edit at https://www.gitignore.io/?templates=python
 
 ### Python ###
+
+## vs code
+.idea
+.vscode
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

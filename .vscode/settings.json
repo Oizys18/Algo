@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\Delta\\AppData\\Local\\Programs\\Python\\Python37\\python.exe"
+    "python.pythonPath": "C:\\Users\\Delta\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+    "workbench.panel.defaultLocation": "right",
+    "editor.fontSize": 26
 }
