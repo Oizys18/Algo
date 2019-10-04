@@ -19,13 +19,11 @@ sys.stdin = open('input.txt','r')
 
 for T in range(int(input())):
     cards, chance = input().split()
-    chance = int(chance) 
-
-    
+    deck = [int(i) for i in cards]
+    chance = int(chance)
     total = []
-
     # while chance:
     #     shuffle(cards)
     #     chance -= 1
     print(cards, chance)
-    # print(deck)
+    print(deck) 
