@@ -4,12 +4,9 @@ from pprint import pprint as pp
 
 def isWall(x,y,value):
     if 0 <= x <= N-1 and 0<= y <= N-1:
-        if mat[x][y] - 1 == value:
-            return True
-        else:
-            return False
-    else:
-        return False
+        if mat[x][y] - 1 == value:return True
+        else:return False
+    else:return False
 
 dx = [-1,1,0,0]
 dy = [0,0,1,-1]
