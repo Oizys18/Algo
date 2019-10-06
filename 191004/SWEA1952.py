@@ -15,8 +15,8 @@ for T in range(int(input())):
     # price_dm = [min(i*d,m) for i in plan]
     # print(day_month)
     
+
     while sum(plan) > 0:
-        print(plan)
         temp = []
         temp3 = []
         flag = 0
@@ -47,4 +47,3 @@ for T in range(int(input())):
         continue
     if tempres < expense:
         expense = tempres
-    print(expense)
