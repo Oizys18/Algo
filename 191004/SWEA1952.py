@@ -11,51 +11,89 @@ for T in range(int(input())):
     d, m, m3, y = map(int,input().split())
     plan = list(map(int,input().split()))
     expense = y
-    tempres = 0
+    # tempres = 0
     price_dm = [min(i*d,m) for i in plan]
+    print(d,m,m3,y)
     print(plan)
     print(price_dm)
+    print()
+    temp = []
+    compare = []
+    res = 0
+    for i in range(12):
+        if i == 10 or i == 11:
+            temp = price_dm[i:]
+            tempPlan = plan[i:]
+        else:
+            temp = price_dm[i:i+3]
+            tempPlan = plan[i:i+3]
+        if sum(temp) < m3:
+            continue
+        else:
+            compare.append(tempPlan)
+    print(compare)
+        # if sum(price_dm[i:i+3]) < m3:
+        #     continue
+        #     # price_dm[i:i+3] = [0,0,0]
+        #     # res += sum(price_dm[i:i+3])
+        # else:
+        #     res += m3
+        #     price_dm[i:i+3] = [0,0,0]
+    print(price_dm)
+            # temp.append(price_dm[i:i+3])
+    # print(temp)
 
     
 
-    while sum(plan) > 0:
-        t4 = []
-        temp = []
-        temp3 = []
-        flag = 0
-        for i in range(12):
-            if i == 10 or i == 11:
-                temp = plan[i:]
-            else:
-                temp = plan[i:i+3]
-            if sum(temp) >  sum(temp3):
-                ri = i
-                temp3 = temp
-                t4.append(temp)
-        print(t4)
-        temp3 = max(t4)
-        print(temp3)
-        tdm = 0
-        for t in temp3:
-            tdm += MorD(t)
-        print(tdm)
-        if m3 < tdm and m3 < tdm:
-            tempres += m3
-        else:
-            tempres += tdm
-        if ri == 10:
-            plan[10] = 0
-            plan[11] = 0
-        elif ri == 11:
-            plan[11] = 0
-        else:
-            plan[ri:ri+3] = [0,0,0]
-        flag = 1
-        print(plan)
-        continue
-    if tempres < expense:
-        expense = tempres
-    print(expense)
+    # while sum(plan) > 0:
+    
+        
+        
+        # t4 = []
+        # temp = []
+        # temp3 = []
+        # flag = 0
+
+
+
+
+    #     for i in range(12):
+    #         if i == 10 or i == 11:
+    #             temp = plan[i:]
+    #         else:
+    #             temp = plan[i:i+3]
+
+
+    #         if sum(temp) >  sum(temp3):
+    #             ri = i
+    #             temp3 = temp
+    #             t4.append(temp)
+    #     # print(t4)
+    #     # temp3 = max(t4)
+    #     # print(temp3)
+    #     tdm = 0
+    #     for t in temp3:
+    #         tdm += MorD(t)
+    #     # print(tdm)
+    #     if m3 < tdm and m3 < tdm:
+    #         tempres += m3
+    #     else:
+    #         tempres += tdm
+    #     if ri == 10:
+    #         plan[10] = 0
+    #         plan[11] = 0
+    #     elif ri == 11:
+    #         plan[11] = 0
+    #     else:
+    #         plan[ri:ri+3] = [0,0,0]
+    #     flag = 1
+    #     # print(plan)
+    #     continue
+    # if tempres < expense:
+    #     expense = tempres
+    # print(expense)
+
+    
 """
 10
 10 40 100 300
