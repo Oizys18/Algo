@@ -8,8 +8,8 @@
 #         print(list(i))
 
 
-for i in range(20):
+# for i in range(20):
     
-    print(i)
-    if i > 5:
-        print(i%5)
+#     print(i)
+#     if i > 5:
+#         print(i%5)

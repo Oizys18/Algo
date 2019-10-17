@@ -21,7 +21,6 @@ for T in range(10):
         else:
             solve(infoli[node][0]) 
             solve(infoli[node][2])
-
             if infoli[node][1] not in '+-*/':
                 queue.append(infoli[node][1])
             else:

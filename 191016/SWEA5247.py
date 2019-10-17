@@ -1,4 +1,4 @@
-# 연산
+# 구현
 import sys
 sys.stdin = open('input6.txt','r')
 

@@ -19,7 +19,6 @@ for T in range(int(input())):
                 leaves[node] += leaves[node*2]
             if node*2+1 <= N:
                 leaves[node] += leaves[node*2+1]
-
-                 
+                
     solve(1)
     print(f"#{T+1} {leaves[L]}")
