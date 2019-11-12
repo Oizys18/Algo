@@ -17,3 +17,4 @@ line = [(1,3),(2,5),(3,4),(1,4),(2,7)]
 for x,y in line:
     Union(x,y)
 print(p)
+
