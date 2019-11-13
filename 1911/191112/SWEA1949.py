@@ -1,3 +1,4 @@
+#등산로 찾기
 import sys
 sys.stdin = open('1949.txt','r')
 
