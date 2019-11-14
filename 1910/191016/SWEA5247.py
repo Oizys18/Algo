@@ -1,12 +1,7 @@
 # 구현
 import sys
 sys.stdin = open('input6.txt','r')
-
-
 import collections
-
-
-
 for T in range(int(input())):
     N, M = map(int,input().split())
 
@@ -15,7 +10,6 @@ for T in range(int(input())):
         queue = collections.deque([(0,node)])
         while queue:
             depth, node = queue.popleft() 
-            # print(depth, node)
             if node > 1000000:
                 continue
             else:
@@ -35,10 +29,9 @@ for T in range(int(input())):
                         return depth + 1
                     else:
                         queue.append((depth+1, node-10))
-                    
                     if node - 1 == goal:
                         return depth + 1
                     else:
                         queue.append((depth+1, node-1))
-                    
     print(f"#{T+1} {BFS(N,M)}")
+

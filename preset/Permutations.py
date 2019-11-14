@@ -12,13 +12,8 @@
 #         print(t)
 #     else:
 #         for i in range(n - 1, -1, -1):
-#             # print('arr')
-#             # print(arr[:3])
 #             arr[i], arr[n - 1] = arr[n - 1], arr[i]
-#             # print(arr[i], arr[n - 1])
 #             t[r - 1] = arr[n - 1]
-#             # print('t')
-#             # print(t)
 #             perm_r_1(n - 1, r - 1)
 #             arr[i], arr[n - 1] = arr[n - 1], arr[i]
 
@@ -141,37 +136,35 @@ i = 1
 
 
 
-# def perm_r_3(k):
-#     if k == N:
-#         print(t)
-#     else:
-#         for i in range(N):
-#             if visited[i]: continue
-#             t[k] = arr[i]
-#             visited[i] = 1
-#             perm_r_3(k + 1)
-#             visited[i] = 0
+def perm_r_3(k):
+    if k == N:
+        print(t)
+    else:
+        for i in range(N):
+            if visited[i]: 
+                continue
+            t[k] = arr[i]
+            visited[i] = 1
+            perm_r_3(k + 1)
+            visited[i] = 0
 
 
 
 # print('순열 반복문')
 # perm_i()
-
-N = 4
-R = 4
 # a = [0] * N
-arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-
-# t = [0] * N
+# R = 4
+N = 4
+arr = [1, 2, 3, 4]
+t = [0] * N
 # print('순열 재귀문1')
 # perm_r_1(N, R)
 
 
-print('순열 재귀문2')
-perm_r_2(0)
+# print('순열 재귀문2')
+# perm_r_2(0)
 
 
-# visited = [0] * N
-# print('순열 재귀문3')
-# perm_r_3(0)
+visited = [0] * N
+print('순열 재귀문3')
+perm_r_3(0)

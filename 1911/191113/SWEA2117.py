@@ -22,3 +22,4 @@ for T in range(int(input())):
                 if house * M >= (k * k + (k - 1) * (k - 1)):    
                     plans.append(house)
     print(f"#{T+1} {max(plans)}")
+    
