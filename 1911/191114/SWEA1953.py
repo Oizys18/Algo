@@ -42,10 +42,7 @@ def BFS(x,y):
                         continue
                     queue.append((depth+1,nx,ny))
     return cnt
-# up:(-1,0) 
-# down: (1,0)
-# left: (0,-1)
-# right: (0,1)
+# up:(-1,0) # down: (1,0) # left: (0,-1) # right: (0,1)
 pipeDic = {
     1:[(0,1),(0,-1),(-1,0),(1,0)],
     2:[(-1,0),(1,0)],
