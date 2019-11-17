@@ -1,6 +1,3 @@
-import itertools
-
-
 # def dfs(v, area, visited):
 #     ret = people[v]
 #     visited[v] = 1
@@ -21,18 +18,19 @@ import itertools
 #                 area1.append(i)
 #             else:
 #                 area2.append(i)
-#         visited = [0] * N
-#         v1 = dfs(area1[0], area1, visited)
-#         v2 = dfs(area2[0], area2, visited)
-#         if sum(visited) == N:
-#             ans = min(ans, abs(v1 - v2))
+#         print(area1)
+#         print(area2)
+#         # visited = [0] * N
+#         # v1 = dfs(area1[0], area1, visited)
+#         # v2 = dfs(area2[0], area2, visited)
+#         # if sum(visited) == N:
+#         #     ans = min(ans, abs(v1 - v2))
 #     else:
 #         subset[k] = 1; solve(k + 1)
 #         subset[k] = 0; solve(k + 1)
 
 
 # N = int(input())
-# pop = [i for i in range(1,N+1)]
 # people = list(map(int, input().split()))
 # G = []
 
@@ -43,40 +41,34 @@ import itertools
 # ans = 1e9
 # subset = [0] * N
 # solve(0)
-# if ans == 1e9:
-#     print(-1)
-# else:
-#     print(ans)
+# # if ans == 1e9:
+# #     print(-1)
+# # else:
+# #     print(ans)
+arr = [1,2,3,4]
+N = 4
 
-# N = 10
-# for i in itertools.chain.from_iterable(itertools.combinations(range(1,N+1),r) for r in range(1,N+1)):
-#     print(i)
-
-# temp = [0]*3
-# def powerset2(s):
-#     x = len(s)
-#     for i in range(1 << x):
-#         for j in range(x):
-#             if i & (1 << j):
-#                 temp[j] = s[j]
-#             else:
-#                 temp[j] = 0
-#         print(temp)
-#         # print([s[j] for j in range(x) if (i & (1 << j))])
-
-# powerset2([1,2,3])
+for i in range(1 << N):
+    subset = []
+    subset2 = []
+    for j in range(N):
+        if j == 0 or j == N-1:continue
+        if i & ( 1 << j):
+            subset.append(arr[j])
+        else:
+            subset2.append(arr[j])
+    print(subset)
+    print(subset2)
+    print()
 
 
-# def powerset(N):
-#     temp = [0]*N
-#     for i in range(1 << N):
-#         for j in range(N):
-#             if i & (1 << j):
-#                 print(pop[j])
-#         # print(temp) 
-# powerset(3)
 
-N = 3
-
-for i in itertools.chain.from_iterable(itertools.combinations(range(1,N+1),r) for r in range(1,N)):
-    print(i)
+# x = 3
+# temp = [0]*x
+# for i in range(1 << x):
+#     for j in range(x):
+#         if i & (1 << j):
+#             temp[j] = 1
+#         else:
+#             temp[j] = 0
+#     print(temp)
