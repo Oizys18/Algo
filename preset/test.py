@@ -13,3 +13,7 @@
 #     print(i)
 #     if i > 5:
 #         print(i%5)
+import random
+seen = [j for j in range(0,18)]
+picked = random.sample([i for i in range(0,20) if i not in seen],3)
+print(picked)
