@@ -1,16 +1,15 @@
-# import sys
-# sys.stdin=open("BJ15649.txt",'r')
-
 N, M = map(int,input().split())
 visited = [0]*N
 arr = range(1,N+1)
 temp = [0]*M
-
+res = []
 def perm(k):
     if k == M:
-        for t in temp:
-            print(t, end=' ')
-        print()
+        if temp == sorted(temp):
+            for t in temp:
+                print(t, end=' ')
+            print()
+        return
     else:
         for i in range(N):
             if visited[i]: 
