@@ -1,6 +1,6 @@
-# N과 M (1)
+# N과 M (3)
 N, M = map(int, input().split())
-visited = [0]*N
+# visited = [0]*N
 arr = range(1, N+1)
 temp = [0]*M
 
@@ -12,12 +12,12 @@ def perm(k):
         print()
     else:
         for i in range(N):
-            if visited[i]:
-                continue
+            # if visited[i]:
+                # continue
             temp[k] = arr[i]
-            visited[i] = 1
+            # visited[i] = 1
             perm(k + 1)
-            visited[i] = 0
+            # visited[i] = 0
 
 
 perm(0)
