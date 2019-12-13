@@ -1,5 +1,5 @@
 # DFS/BFS Silver 1
-
+# DFS 미해결 ㅠ 
 N, M, V = map(int, input().split())
 edges = {}
 for i in range(1, N+1):
