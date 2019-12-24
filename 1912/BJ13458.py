@@ -2,14 +2,20 @@
 
 N = int(input())
 test = list(map(int,input().split()))
-temp = [0]*N
 B, C = map(int,input().split())
+temp = [B]*N
 
-res = 0
+res = N
 for i in range(N):
-    temp[i] += B
-    res += 1
-    while temp[i] < test[i]:
-        temp[i] += C
-        res += 1
+    if temp[i] < test[i]:
+        if test[i] - temp[i] > C:
+            if (test[i] - temp[i]) % C == 0:
+                res += (test[i] - temp[i]) // C
+            else:
+                res += (test[i] - temp[i]) // C + 1
+        else:
+            res += 1
 print(res)
+
+
+
