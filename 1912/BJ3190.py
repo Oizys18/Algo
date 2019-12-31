@@ -23,7 +23,8 @@ for l in range(L):
     X, C = input().split()
     X = int(X)
     rot[X] = C
-#           오  아래  왼쪽    위
+
+
 rotat = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
 
@@ -63,7 +64,7 @@ def solve(x, y, d, t):
             y = ny
         else:
             return t+1
-        # pp(mat)
+        pp(mat)
 
 res = solve(0, 0, 0, 0)
 print(res)

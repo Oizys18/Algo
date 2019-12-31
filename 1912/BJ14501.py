@@ -19,5 +19,5 @@ def solve(day, profit):
         # 상담 X
         if day + 1 <= N+1:
             solve(day+1, profit)
-solve(0,0)
+solve(0,0) 
 print(res)
