@@ -25,10 +25,10 @@ def solve(x, y):
 
 def solve2(x, y):
     global paint2
-    if not visit[x][y]:
+    if visit[x][y] == 0:
         idx = 0
         for i in range(N-y):
-            if not visit[x][y+i]:
+            if visit[x][y+i]:
                 if mat[x][y+i] == 0:
                     idx = i
                 else:
@@ -44,6 +44,6 @@ for x in range(N):
     for y in range(N):
         if mat[x][y] == 1:
             solve(x, y)
-        else:
+        elif mat[x][y] == 0:
             solve2(x, y)
 print(visit)
