@@ -1,4 +1,10 @@
-# 양팔저울
+# 양팔저울 
+N = int(input())
+weight = [*map(int,input().split())]
+M = int(input())
+marble = [*map(int,input().split())]
+
+양팔저울
 N = int(input())
 dp = [[0]*15001 for _ in range(31)]
 # weight = [0]*31
@@ -18,7 +24,9 @@ def solve():
                 nextW = weight[i] * check[j] + k
                 dp[i][abs(nextW)] = dp[i-1][k]
 
-solve()
+# solve()
+
+
 # print(dp[N][4])
 
 # for m in range(M):
