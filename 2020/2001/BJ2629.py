@@ -1,33 +1,34 @@
-# 양팔저울 
+# 양팔저울
 N = int(input())
-weight = [0]+[*map(int,input().split())]
+weights = [*map(int, input().split())]+[0]
 M = int(input())
-marble = [*map(int,input().split())]
+marbles = [*map(int, input().split())]
 dp = [[0]*15001 for _ in range(N+1)]
-check = [-1,0,1]
-def solve():
-    dp[0][0] = 1    
-    for w in range(1,N+1):
-        for j in check:
-            for k in range(15001):
-                nw = weight[w] * j + k 
-                # if nw < 0 or nw > 15000:
-                #     continue
-                # else:
-                dp[w][nw] = dp[w-1][k]
-solve()
-print(dp[2][3])
+check = [-1, 0, 1]
 
-for m in marble:
-    if dp[N][m]:
-        print('Y')
-    else:
+def solve(weightCNT, current_weight):
+    if weightCNT > N:
+        return
+    if current_weight > 15000:
+        return
+    if not dp[weightCNT][current_weight]:
+        dp[weightCNT][current_weight] = 1
+        solve(weightCNT + 1, current_weight + weights[weightCNT])
+        solve(weightCNT + 1, current_weight)
+        solve(weightCNT + 1, abs(current_weight - weights[weightCNT]))
+
+
+solve(0, 0)
+for m in marbles:
+    if m > 15000:
         print('N')
+    else:
+        if dp[N][m]:
+            print('Y')
+        else:
+            print('N')
 
-
-
-
-
+# print(dp[2][4])
 
 # print(dp[2][4])
 # print(dp[])
