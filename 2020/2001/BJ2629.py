@@ -23,7 +23,7 @@ for m in marbles:
     if m > 15000:
         print('N')
     else:
-        if dp[N][m]:
+        if dp[N][m]: 
             print('Y')
         else:
             print('N')
