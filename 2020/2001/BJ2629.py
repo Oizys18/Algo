@@ -4,12 +4,9 @@ weights = [*map(int, input().split())]+[0]
 M = int(input())
 marbles = [*map(int, input().split())]
 dp = [[0]*15001 for _ in range(N+1)]
-check = [-1, 0, 1]
 
 def solve(weightCNT, current_weight):
     if weightCNT > N:
-        return
-    if current_weight > 15000:
         return
     if not dp[weightCNT][current_weight]:
         dp[weightCNT][current_weight] = 1
@@ -28,12 +25,7 @@ for m in marbles:
         else:
             print('N')
 
-# print(dp[2][4])
-
-# print(dp[2][4])
-# print(dp[])
-
-# # 양팔저울
+# 양팔저울
 # N = int(input())
 # dp = [[0]*15001 for _ in range(31)]
 # # weight = [0]*31

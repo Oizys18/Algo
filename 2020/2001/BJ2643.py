@@ -7,41 +7,18 @@ N = int(input())
 paper = [sorted(map(int,input().split())) for _ in range(N)]
 dp = [0]*N
 
-# def solve(p):
-#     if dp[p]:
-#         return dp[p]
-#     dp[p] = 1
-#     for j in range(N):
-#         if i != j and paper[i][0] >= paper[j][0] and paper[i][1] >= paper[j][1]:
-#             dp[
+def solve(p):
+    if dp[p]:
+        return dp[p]
+    dp[p] = 1
+    for j in range(N):
+        if p != j and paper[p][0] >= paper[j][0] and paper[p][1] >= paper[j][1]:
+            dp[p] = max(dp[p], solve(j)+1)
+    return dp[p]
 
-def find(s,e):
-    if dp[s]:
-        return dp[s]
-    dp[s] = 1
-    for j in range(s,e):
-        if s != j and paper[s][0] >= paper[j][0] and paper[s][1] >= paper[j][1]:
-            dp[s] = max(dp[s], find(j,e)+1)
-
-find(0,N)
-print(dp)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+for k in range(N):
+    dp[k] = solve(k)
+print(max(dp))
 
 # print(paper)
 
@@ -59,18 +36,10 @@ print(dp)
 # print(max(dp))
 
 
-
-
-
-
-
-
-
-
-## res를 만들고,
-## 1. res 보다 biggerthan의 값이 작으면 무시
-## 2. 크다면 한번 쌓아본다.
-## 3. 만약 쌓은 갯수가 res보다 크면 res 갱신
+# res를 만들고,
+# 1. res 보다 biggerthan의 값이 작으면 무시
+# 2. 크다면 한번 쌓아본다.
+# 3. 만약 쌓은 갯수가 res보다 크면 res 갱신
 
 # res = 0
 
