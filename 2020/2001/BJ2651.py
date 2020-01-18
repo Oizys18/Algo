@@ -1,7 +1,9 @@
 # BJ2651 자동차경주
 gas = int(input())
 stops = int(input())
+# 출발지점[0] + 목적지[stops+1]
 visit = [0]*(stops+2)
+
 far = [0]+ [*map(int, input().split())] 
 cost = [0] + [*map(int, input().split())] + [0]
 
