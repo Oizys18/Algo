@@ -1,6 +1,4 @@
-from pprint import pprint as pp
 # 불! 불! 불이야!
-testcase = int(input())
 # 딕-셔너-리로 한 번 풀어보겠읍니다!
 
 # 불 BFS 돌려서 각 time 별 (x,y)의 정보를 저장해둔다
@@ -9,6 +7,10 @@ testcase = int(input())
 # fire_mat에 상근 BFS를 돌려본다.
 # 만약 depth + 1 보다 해당 좌표 fire의 값이 더 크면 통과,
 # 만약 depth + 1 보다 해당 좌표 fire의 값이 더 작으면 fail
+from pprint import pprint as pp
+
+import collections
+testcase = int(input())
 def isPath(x, y):
     if 0 <= x < h and 0 <= y < w:
         if mat[x][y] == '@' or mat[x][y] == '.':
@@ -20,10 +22,10 @@ def isPath(x, y):
 
 def fire_BFS(depth, x, y):
     global fire_mat
-    queue = []
+    queue = collections.deque()
     queue.append((depth, x, y))
     while queue:
-        depth, x, y = queue.pop(0)
+        depth, x, y = queue.popleft()
         if not fire_mat[x][y] or fire_mat[x][y] > depth:
             fire_mat[x][y] = depth
             for dx, dy in (0, 1), (0, -1), (-1, 0), (1, 0):
@@ -33,47 +35,185 @@ def fire_BFS(depth, x, y):
                     queue.append((depth+1, nx, ny))
     
 def sang_BFS(depth,x,y):
-    queue = []
+    queue = collections.deque()
     queue.append((depth, x, y))
     while queue:
-        depth, x, y = queue.pop(0)
-        if not visit[x][y] :
+        depth, x, y = queue.popleft()
+        if not visit[x][y]:
             visit[x][y] = depth
+            if x == 0 or x == h-1 or y == 0 or y == w-1:
+                return depth
             for dx, dy in (0, 1), (0, -1), (-1, 0), (1, 0):
                 nx = x + dx
                 ny = y + dy
-                if isPath(nx,ny) and (not fire_mat[nx][ny] or fire_mat[nx][ny] < depth+1):
+                if isPath(nx,ny) and (not fire_mat[nx][ny] or fire_mat[nx][ny] > depth+1):
                     queue.append((depth+1, nx,ny))
-
+    return 'IMPOSSIBLE'
 
 for t in range(testcase):
     w, h = map(int, input().split())
     mat = [input() for _ in range(h)]
     fire_mat = [[0]*w for _ in range(h)]
     visit = [[0]*w for _ in range(h)]
-    
+    flag = 0
     for x in range(h):
         for y in range(w):
+            if ((y == 0 or y == w-1) or (x == 0 or x == h-1)) and (mat[x][y] != '#' or mat[x][y]!= '*'):
+                flag = 1
             if mat[x][y] == '*':
-                fire_BFS(0,x,y)
+                fire_BFS(1,x,y)
             elif mat[x][y] == '@':
                 start = (x,y)
-    
-    sang_BFS(0,start[0],start[1])
-    pp(fire_mat)
-    pp(visit)
-    
+    if not flag:
+        print('IMPOSSIBLE')
+    else:
+        print(sang_BFS(1,start[0],start[1]))
+
+    # pp(fire_mat)
+    # pp(visit)
+
 
 
 """
-1
-7 6
-###.###
-#*#.#*#
-#.....#
-#.....#
-#..@..#
-#######
+21
+1 1
+@
+3 3
+.#.
+#@#
+.#.
+3 3
+...
+.@.
+...
+3 3
+.#.
+#@#
+.#*
+8 3
+########
+#*@.....
+########
+5 6
+##.##
+#...#
+#.#.#
+#.#@#
+#*#.#
+#####
+5 6
+##.##
+#...#
+#.#.#
+#*#@#
+#.#.#
+#####
+5 6
+##.##
+#...#
+#*#.#
+#.#@#
+#.#.#
+#####
+8 9
+########
+#......#
+#.####.#
+#.#@.#.#
+#.##.#.#
+#....#.#
+######.#
+#......#
+########
+5 3
+##.##
+#*.@#
+#####
+7 7
+.......
+.*#.##.
+.##.##.
+...@...
+.##.##.
+.##.#*.
+.......
+7 7
+......*
+.##.##.
+.##.##.
+...@...
+.##.##.
+.##.##.
+*......
+7 7
+.*....*
+.##.##.
+.##.##.
+...@...
+.##.##.
+.##.##.
+.*....*
+7 7
+.......
+*##.##*
+.##.##.
+...@...
+.##.##.
+.##.##.
+*.....*
+7 7
+*....*.
+.##.##.
+.##.##.
+...@...
+.##.##.
+.##.##.
+*....*.
+7 7
+*.....*
+.##.##.
+.##.##.
+...@...
+.##.##.
+*##.##*
+.......
+7 7
+..#.#..
+.*#.#*.
+.##.##.
+...@...
+.##.##.
+.*#.#*.
+.......
+7 7
+.......
+.*#.#*.
+.##.###
+...@...
+.##.###
+.*#.#*.
+.......
+7 7
+.......
+.*#.#*.
+###.##.
+...@...
+###.##.
+.*#.#*.
+.......
+7 7
+.......
+.*#.#*.
+.##.##.
+...@...
+.##.##.
+.*#.#*.
+..#.#..
+5 3
+..#..
+.@#*.
+..#..
+
 """
 
 # def isPath(x, y):
