@@ -26,7 +26,9 @@ def BFS(field, x, y):
             continue
         if not visit[x][y]:
             if field[x][y] == 1:
-                return (x, y)
+                field[x][y] = 0
+                # pp(field)
+                return True
             visit[x][y] = 1
             for dx, dy in [(0, -1), (-1, 0), (0, 1)]:
                 nx = x + dx
@@ -39,13 +41,14 @@ def fight():
     kills = 0
     field = collections.deque(copy.deepcopy(mat))
     while True:
+        # print('----')
         # fire arrows
         for x in range(N + 1):
             for y in range(M):
                 if field[x][y] == 2:
                     killed = BFS(field, x, y)
                     if killed:
-                        field[killed[0]][killed[1]] = 0
+                        # field[killed[0]][killed[1]] = 0
                         kills += 1
         print(kills)
 
@@ -70,6 +73,6 @@ for chosen_archer in itertools.combinations(range(M), 3):
     tactics = fight()
     if res < tactics:
         res = tactics
-    mat[N] = [0]*N
+    mat[N] = [0]*M
 
 # print(res)
