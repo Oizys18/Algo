@@ -35,6 +35,7 @@ for idx, d, k in spin_info:
                 mat[pan-1].rotate(k)
             elif d == 1:
                 mat[pan-1].rotate(-k)
+        
     flag_b = 0
     for r in range(N):
         for c in range(M):

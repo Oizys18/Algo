@@ -23,6 +23,8 @@ for i in range(34):
 
 # print(gameMap)
 
+
+
 print([i for i in range(34)])
 # start - 10 - 25 - 40 - finish
 pathOne = [0, 1, 2, 3, 4, 5, 21, 22, 23, 24(25), 25, 26, 20(40), 33]
