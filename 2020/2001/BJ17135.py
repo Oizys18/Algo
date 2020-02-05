@@ -65,7 +65,6 @@ res = 0
 for chosen_archer in itertools.combinations(range(M), 3):
     for ca in chosen_archer:
         mat[N][ca] = 2
-
     tactics = fight()
     if res < tactics:
         res = tactics
