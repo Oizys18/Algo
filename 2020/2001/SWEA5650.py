@@ -16,6 +16,8 @@ block = {
 }
 
 # map check
+
+
 def isMap(x, y):
     if 0 <= x < N and 0 <= y < N:
         return True
@@ -29,40 +31,40 @@ def isWall(x, y):
     else:
         return False
 
-# x,y,방향
-
 
 def solve(x, y, startD):
-    visit = [[[-1]]*N for _ in range(N)]
+    visit = {}
     start = x, y
-    # start direction (current)
     d = startD
     temp = 0
+
     while True:
         dx, dy = direc[d]
         nx, ny = x + dx, y + dy
-        
-        if d not in visit[x][y]:
-            visit[x][y].append(d)
+        if start == (x, y) and visit.get((x, y)):
+            return temp
+        if not visit.get((x, y)):
+            visit[(x, y)] = [0]*4
+            visit[(x, y)][d] = 1
         else:
-            if (x, y) == start:
-                return temp
-            if d in visit[x][y]:
+            if not visit[(x, y)][d]:
+                visit[(x, y)][d] = 1
+            else:
+                temp = 0
                 break
-        if isMap(nx, ny):
 
-            # else:
-            # 다음 블록에 뭔가 있음
+        if isMap(nx, ny):
             if mat[nx][ny]:
                 # 블랙홀
                 if mat[nx][ny] == -1:
                     return temp
                 # 블록
-                elif 1 <= mat[x][y] <= 5:
-                    dx, dy = block[d]
-                    x, y = nx + dx, ny + dy
+                elif 1 <= mat[nx][ny] <= 5:
+                    # dx, dy = block[mat[nx][ny]][d]
+                    # x, y = nx + dx, ny + dy
+                    x, y = nx, ny
                     temp += 1
-                    if mat[x][y] == 1:
+                    if mat[nx][ny] == 1:
                         if d == 0:
                             d = 1
                         elif d == 1:
@@ -72,7 +74,7 @@ def solve(x, y, startD):
                         elif d == 3:
                             d = 2
 
-                    elif mat[x][y] == 2:
+                    elif mat[nx][ny] == 2:
                         if d == 0:
                             d = 3
                         elif d == 1:
@@ -82,7 +84,7 @@ def solve(x, y, startD):
                         elif d == 3:
                             d = 1
 
-                    elif mat[x][y] == 3:
+                    elif mat[nx][ny] == 3:
                         if d == 0:
                             d = 2
                         elif d == 1:
@@ -91,7 +93,7 @@ def solve(x, y, startD):
                             d = 3
                         elif d == 3:
                             d = 1
-                    elif mat[x][y] == 4:
+                    elif mat[nx][ny] == 4:
                         if d == 0:
                             d = 2
                         elif d == 1:
@@ -101,7 +103,7 @@ def solve(x, y, startD):
                         elif d == 3:
                             d = 0
 
-                    elif mat[x][y] == 5:
+                    elif mat[nx][ny] == 5:
                         if d == 0:
                             d = 2
                         elif d == 1:
@@ -112,7 +114,7 @@ def solve(x, y, startD):
                             d = 1
 
                 # 웜홀
-                elif 6 <= mat[x][y] <= 10:
+                elif 6 <= mat[nx][ny] <= 10:
                     x, y = teleport[(nx, ny)]
             # 그냥 빈 공간
             else:
@@ -129,7 +131,7 @@ def solve(x, y, startD):
             elif N == ny and d == 2:
                 d = 0
             temp += 1
-            
+
 
 T = int(input())
 for testcase in range(1, T+1):
@@ -154,10 +156,10 @@ for testcase in range(1, T+1):
                         wormHole[mat[x][y]] = []
                     wormHole[mat[x][y]].append((x, y))
 
-
     teleport = {}
     for k in wormHole:
         teleport[wormHole[k][0]] = wormHole[k][1]
+        teleport[wormHole[k][1]] = wormHole[k][0]
 
     result = 0
     for x in range(N):
@@ -168,19 +170,68 @@ for testcase in range(1, T+1):
                     if tempRes:
                         if tempRes >= result:
                             result = tempRes
-print(result)
+    print(f"#{testcase} {result}")
 
 """
-1
+5
 10
-0 1 0 3 0 0 0 0 7 0
-0 0 0 0 -1 0 5 0 0 0
-0 4 0 0 0 3 0 0 2 2
-1 0 0 0 1 0 0 3 0 0
-0 0 3 0 0 0 0 0 6 0
-3 0 0 0 2 0 0 1 0 0
-0 0 0 0 0 1 0 0 4 0
-0 5 0 4 1 0 7 0 0 5
-0 0 0 0 0 1 0 0 0 0
-2 0 6 0 0 4 0 0 0 4
+0 1 0 3 0 0 0 0 7 0 
+0 0 0 0 -1 0 5 0 0 0 
+0 4 0 0 0 3 0 0 2 2 
+1 0 0 0 1 0 0 3 0 0 
+0 0 3 0 0 0 0 0 6 0 
+3 0 0 0 2 0 0 1 0 0 
+0 0 0 0 0 1 0 0 4 0 
+0 5 0 4 1 0 7 0 0 5 
+0 0 0 0 0 1 0 0 0 0 
+2 0 6 0 0 4 0 0 0 4 
+6
+1 1 1 1 1 1 
+1 1 -1 1 1 1 
+1 -1 0 -1 1 1 
+1 1 -1 1 1 1 
+1 1 1 1 1 1 
+1 1 1 1 1 1 
+8
+0 0 0 3 0 0 0 0 
+0 0 2 0 0 5 0 0 
+0 0 5 0 3 0 0 0 
+0 0 1 1 0 0 0 4 
+0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 5 0 
+0 0 4 0 0 3 1 0 
+2 0 0 4 3 4 0 0 
+10
+0 4 0 0 0 0 4 0 5 0 
+0 0 0 0 0 0 0 0 3 0 
+0 0 0 5 6 0 0 0 0 2 
+3 0 0 1 0 0 1 4 0 2 
+2 0 0 0 0 5 0 0 5 0 
+0 0 1 0 2 0 0 0 5 0 
+0 0 0 0 0 0 6 1 0 0 
+0 0 1 0 2 0 2 4 0 0 
+0 0 0 0 0 0 2 0 0 0 
+2 0 0 0 0 0 0 3 0 0 
+20
+0 0 1 0 0 0 0 3 0 3 0 0 0 4 0 0 1 0 4 0 
+0 1 2 3 3 0 0 0 0 0 0 0 0 5 0 0 0 0 5 0 
+0 0 0 0 0 0 0 0 0 5 0 0 0 5 0 4 0 0 0 0 
+4 0 0 0 0 0 0 4 5 0 0 0 3 0 0 0 3 0 0 0 
+0 0 0 3 0 4 1 0 3 0 0 0 0 4 0 0 0 2 0 3 
+2 2 0 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 5 0 5 0 0 0 3 4 
+0 0 5 0 -1 5 0 0 5 2 0 0 0 4 2 0 0 3 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 
+2 0 0 0 0 3 0 0 3 3 3 0 0 1 0 0 2 0 0 0 
+1 5 0 5 0 0 0 0 5 4 5 0 0 0 0 4 2 4 0 0 
+0 4 0 0 0 1 3 0 0 0 0 0 1 0 3 0 0 2 0 0 
+0 0 0 0 0 0 3 0 1 0 0 1 0 0 0 0 0 3 4 0 
+0 4 0 4 0 0 0 0 0 0 0 2 0 0 0 3 0 0 0 2 
+0 5 0 0 0 4 1 5 0 0 0 2 0 0 0 0 0 0 0 0 
+0 0 0 5 0 0 1 2 0 0 0 3 1 2 5 0 0 0 0 0 
+0 4 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 4 0 0 0 0 4 0 0 0 0 0 0 1 4 0 2 0 
+0 0 1 0 0 0 0 0 3 0 0 0 0 0 0 0 5 0 0 0 
+0 0 0 0 0 0 0 5 0 4 0 0 0 0 0 2 0 0 2 0 
+
 """
