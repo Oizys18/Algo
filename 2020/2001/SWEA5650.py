@@ -1,4 +1,5 @@
 # 핀볼게임
+from pprint import pprint as pp 
 
 # 방향 지시등
 dr = [0, 1, 2, 3]
@@ -19,7 +20,7 @@ block = {
 
 
 def isMap(x, y):
-    if 0 <= x < N and 0 <= y < N:
+    if 0 <= x < N+1 and 0 <= y < N+1:
         return True
     else:
         return False
@@ -60,8 +61,6 @@ def solve(x, y, startD):
                     return temp
                 # 블록
                 elif 1 <= mat[nx][ny] <= 5:
-                    # dx, dy = block[mat[nx][ny]][d]
-                    # x, y = nx + dx, ny + dy
                     x, y = nx, ny
                     temp += 1
                     if mat[nx][ny] == 1:
@@ -136,14 +135,15 @@ def solve(x, y, startD):
 T = int(input())
 for testcase in range(1, T+1):
     N = int(input())
-    mat = [[*map(int, input().split())] for _ in range(N)]
+    mat = [[5]*(N+1)]+ [[5] +[*map(int, input().split())] +[5] for _ in range(N)] + [[5]*(N+1)]
+    # pp(mat)
     # 진출 방향, 좌상우하
 
     blackHole = []
     wormHole = dict()
     blocks = dict()
-    for x in range(N):
-        for y in range(N):
+    for x in range(N+1):
+        for y in range(N+1):
             if mat[x][y]:
                 if mat[x][y] == -1:
                     blackHole.append((x, y))
@@ -162,8 +162,8 @@ for testcase in range(1, T+1):
         teleport[wormHole[k][1]] = wormHole[k][0]
 
     result = 0
-    for x in range(N):
-        for y in range(N):
+    for x in range(N+1):
+        for y in range(N+1):
             if not mat[x][y]:
                 for startD in range(4):
                     tempRes = solve(x, y, startD)
@@ -172,6 +172,18 @@ for testcase in range(1, T+1):
                             result = tempRes
     print(f"#{testcase} {result}")
 
+
+
+"""
+1
+6
+1 1 1 1 1 1 
+1 1 -1 1 1 1 
+1 -1 0 -1 1 1 
+1 1 -1 1 1 1 
+1 1 1 1 1 1 
+1 1 1 1 1 1
+"""
 """
 5
 10
