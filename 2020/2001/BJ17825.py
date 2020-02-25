@@ -9,33 +9,106 @@
 # for itert in itertools.combinations_with_replacement(range(4),10):
 #     print(itert)
     
+import itertools
 dice_info = [*map(int,input().split())]
-
-# 현재 i번째 말의 위치
-pawn = [0]*4
-
-# 현재 i번째 말이 있는 지도 정보 
-pawn_map = [1]*4
 
 # 점수판 
 score_board = [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,13,16,19,25,30,35,22,24,28,27,26,0]
-
-# 현재 맵 위의 말 위치 
-map_visit = [0]*33
-
-# 주사위 사용정보
-visit = [0]*10
-
-map_one = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,32]
+map_one = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,32] 
 map_two = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,29,30,31,24,25,26,20,32]
 map_three = [0,1,2,3,4,5,6,7,8,9,10,27,28,24,25,26,20,32]
 map_four = [0,1,2,3,4,5,21,22,23,24,25,26,20,32]
-res = 0
-
-def solve():
-    
-
-
+result = 0
+# for pawn_choice in itertools.combinations_with_replacement(range(4),10):
+# for pawn_choice in itertools.product(range(4),repeat=10):
+#     pawn = [[0,0],[0,0],[0,0],[0,0]]
+#     temp_res = 0
+#     flag = 0
+#     visit = [0]*33
+#     # 주사위 별 움직이는 말 
+#     for pc in range(10):
+#         pawn_map = pawn[pawn_choice[pc]][0] 
+#         pawn_pos = pawn[pawn_choice[pc]][1]
+#         if pawn_pos != 32:
+#             dice = dice_info[pc]
+#             if pawn_map == 0:
+#                 nxt = map_one.index(pawn_pos) + dice
+#                 if nxt >= len(map_one):
+#                     pawn[pawn_choice[pc]][1] = 32
+#                     next_pos = 32
+#                     visit[pawn_pos] = 0
+#                 else:
+#                     next_pos = map_one[nxt]
+#                     if next_pos == 5:
+#                         pawn[pawn_choice[pc]][0] = 3
+#                     elif next_pos == 10:
+#                         pawn[pawn_choice[pc]][0] = 2
+#                     elif next_pos == 15:
+#                         pawn[pawn_choice[pc]][0] = 1
+#                     if visit[next_pos]:
+#                         flag = 1
+#                         break
+#                     else:
+#                         pawn[pawn_choice[pc]][1] = next_pos
+#                         visit[pawn_pos] = 0
+#                         visit[next_pos] = 1
+#                 temp_res += score_board[next_pos]
+#             elif pawn_map == 1:
+#                 nxt = map_two.index(pawn_pos) + dice
+#                 if nxt >= len(map_two):
+#                     pawn[pawn_choice[pc]][1] = 32
+#                     next_pos = 32
+#                     visit[pawn_pos] = 0
+#                 else:
+#                     next_pos = map_two[nxt]
+#                     if visit[next_pos]:
+#                         flag = 1
+#                         break
+#                     else:
+#                         pawn[pawn_choice[pc]][1] = next_pos
+#                         visit[pawn_pos] = 0
+#                         visit[next_pos] = 1
+#                 temp_res += score_board[next_pos]
+#             elif pawn_map == 2:
+#                 nxt = map_three.index(pawn_pos) + dice
+#                 if nxt >= len(map_three):
+#                     pawn[pawn_choice[pc]][1] = 32
+#                     next_pos = 32
+#                     visit[pawn_pos] = 0
+#                 else:
+#                     next_pos = map_three[nxt]
+#                     if visit[next_pos]:
+#                         flag = 1
+#                         break
+#                     else:
+#                         pawn[pawn_choice[pc]][1] = next_pos
+#                         visit[pawn_pos] = 0
+#                         visit[next_pos] = 1
+#                 temp_res += score_board[next_pos]
+#             elif pawn_map == 3:
+#                 nxt = map_four.index(pawn_pos) + dice
+#                 if nxt >= len(map_four):
+#                     pawn[pawn_choice[pc]][1] = 32
+#                     next_pos = 32
+#                     visit[pawn_pos] = 0
+#                 else:
+#                     next_pos = map_four[nxt]
+#                     if visit[next_pos]:
+#                         flag = 1
+#                         break
+#                     else:
+#                         pawn[pawn_choice[pc]][1] = next_pos
+#                         visit[pawn_pos] = 0
+#                         visit[next_pos] = 1
+#                 temp_res += score_board[next_pos]
+#         else:
+#             flag = 1
+#             break
+#     if flag:
+#         continue
+#     if temp_res > result:
+#         result = temp_res
+# print(result)
 
 
 # def solve(turn,score):
