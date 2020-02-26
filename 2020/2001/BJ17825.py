@@ -1,4 +1,4 @@
-# 주사위 윷놀이 
+# 주사위 윷놀이
 """
 # Rules 
 1. nums은 1부터 5까지만 있다...!
@@ -8,26 +8,99 @@
 # import itertools
 # for itert in itertools.combinations_with_replacement(range(4),10):
 #     print(itert)
-    
-import itertools
-dice_info = [*map(int,input().split())]
 
-# 점수판 
-score_board = [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,13,16,19,25,30,35,22,24,28,27,26,0]
-map_one = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,32] 
-map_two = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,29,30,31,24,25,26,20,32]
-map_three = [0,1,2,3,4,5,6,7,8,9,10,27,28,24,25,26,20,32]
-map_four = [0,1,2,3,4,5,21,22,23,24,25,26,20,32]
+import itertools
+dice_info = [*map(int, input().split())]
+
+# 점수판
+score_board = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28,
+               30, 32, 34, 36, 38, 40, 13, 16, 19, 25, 30, 35, 22, 24, 28, 27, 26, 0]
+visit = [0]*33
+map_info = [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 32],
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 29, 30, 31, 24, 25, 26, 20, 32],
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 27, 28, 24, 25, 26, 20, 32],
+            [0, 1, 2, 3, 4, 5, 21, 22, 23, 24, 25, 26, 20, 32]]
 result = 0
-# for pawn_choice in itertools.combinations_with_replacement(range(4),10):
+pawn = [[0, 0], [0, 0], [0, 0], [0, 0]]
+scores = [0]*4
+
+     
+
+
+"5 1 2 3 4 5 5 3 2 4"
+"1 1 1 2 3 3 3 3 3 1"
+
+
+def solve(diceIDX):
+    global result
+    if diceIDX == 10:
+        if result < sum(scores):
+            result = sum(scores)
+            print('--------------')
+            print(pawn)
+            print(result)
+        return
+
+    dice = dice_info[diceIDX]
+    for i in range(4):
+        flag = 0
+        cur_map = pawn[i][0]
+        cur_pos = pawn[i][1]
+        if cur_pos == 32:
+            continue
+
+        nxt_map = cur_map
+        nxt_pos = cur_pos
+        nxt = map_info[cur_map].index(cur_pos) + dice
+        if cur_map == 0:
+            if nxt >= len(map_info[cur_map]):
+                nxt_pos = 32
+            else:
+                nxt_pos = map_info[cur_map][nxt]
+                if nxt_pos == 5:
+                    nxt_map = 3
+                elif nxt_pos == 10:
+                    nxt_map = 2
+                elif nxt_pos == 15:
+                    nxt_map = 1
+        else:
+            if nxt >= len(map_info[cur_map]):
+                nxt_pos = 32
+            else:
+                nxt_pos = map_info[cur_map][nxt]
+
+        if nxt_pos != 32:
+            for p in range(len(pawn)):
+                if nxt_pos == pawn[p][1]:
+                    flag = 1
+        if flag:
+            continue
+
+        pawn[i][0] = nxt_map
+        pawn[i][1] = nxt_pos
+        scores[i] += score_board[nxt_pos]
+        visit[nxt_pos] = 1
+
+        solve(diceIDX + 1)
+        
+        visit[nxt_pos] = 0
+        pawn[i][0] = cur_map
+        pawn[i][1] = cur_pos
+        scores[i] -= score_board[nxt_pos]
+
+solve(0)
+print(result)
+
+
+
 # for pawn_choice in itertools.product(range(4),repeat=10):
 #     pawn = [[0,0],[0,0],[0,0],[0,0]]
 #     temp_res = 0
 #     flag = 0
 #     visit = [0]*33
-#     # 주사위 별 움직이는 말 
+#     # 주사위 별 움직이는 말
 #     for pc in range(10):
-#         pawn_map = pawn[pawn_choice[pc]][0] 
+#         pawn_map = pawn[pawn_choice[pc]][0]
 #         pawn_pos = pawn[pawn_choice[pc]][1]
 #         if pawn_pos != 32:
 #             dice = dice_info[pc]
@@ -119,7 +192,7 @@ result = 0
 #             res = score
 #         return
 #     else:
-        
+
 #         for i in range(4):
 #             if pawn[i] != 32:
 #                 if not visit[turn]:
@@ -128,9 +201,8 @@ result = 0
 #                     cur_map = pawn_map[i]
 #                     visit[turn] = 1
 #                     dice_num = dice_info[turn]
-                    
-                    
-                    
+
+
 #                     if pawn_map[i] == 1:
 #                         next_num = map_one.index(pawn[i]) + dice_num
 #                         if next_num >= len(map_one):
@@ -194,8 +266,8 @@ result = 0
 #                         print('---------')
 #                         print(turn,pawn)
 #                         solve(turn + 1, score + score_board[nxt])
-                    
-                    
+
+
 #                     pawn_map[i] = cur_map
 #                     pawn[i] = cur
 #                     map_visit[nxt] = 0
