@@ -24,21 +24,11 @@ result = 0
 pawn = [[0, 0], [0, 0], [0, 0], [0, 0]]
 scores = [0]*4
 
-     
-
-
-"5 1 2 3 4 5 5 3 2 4"
-"1 1 1 2 3 3 3 3 3 1"
-
-
 def solve(diceIDX):
     global result
     if diceIDX == 10:
         if result < sum(scores):
             result = sum(scores)
-            print('--------------')
-            print(pawn)
-            print(result)
         return
 
     dice = dice_info[diceIDX]
