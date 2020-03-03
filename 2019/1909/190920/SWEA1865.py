@@ -1,43 +1,35 @@
 import sys
 sys.stdin = open('input.txt', 'r')
 from pprint import pprint as pp 
-import itertools
-# import copy
 
-# def perm_r_3(k):
-#     if k == N:
-#         print(t)
-#     else:
-#         for i in range(N):
-#             if visited[i]: continue
-#             t[k] = arr[i]
-#             visited[i] = 1
-#             perm_r_3(k + 1)
-#             visited[i] = 0
-temp = 1
-def myPerm(k):
-    global temp
-    stack = []
-    arr = [i for i in range(1,N+1)]
-    visited = [0]*N
-    stack.append(arr[k])
-    while True:
-        node = stack.pop(0)
-        if visited[node]:
-            continue
-        else:
-            
-            visited[node] = 1
+
+def solve(k,)
 
 
 
 
-for T in range(int(input())):
-    N = int(input())
-    mat = [list(map(lambda x : int(x)/100,input().split())) for _ in range(N)]
-    # pp(mat)
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
