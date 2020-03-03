@@ -1,10 +1,10 @@
 # SWEA 4008 계산기
 import sys
 sys.stdin = open('4008.txt','r')
+from pprint import pprint as pp
 
 
 import itertools
-from pprint import pprint as pp
 int(input())
 for T in range(1):
     N = int(input())
