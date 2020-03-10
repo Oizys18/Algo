@@ -2,57 +2,26 @@ import sys
 sys.stdin = open('input.txt', 'r')
 from pprint import pprint as pp 
 
-
-def solve(k,)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def findBest():
-#     global collections
-#     global visit
-#     while True:
-#         for i in range(N):
-#             maxNum = max(mat[i])
-#             zipline = mat2[mat[i].index(maxNum)]
-#             if (maxNum == max(zipline)):  
-#                 zipIdx = zipline.index(max(zipline))
-#                 oriIdx = mat[i].index(maxNum)
-#                 collections[i] = maxNum
-#                 if collections.count(0) == 0:
-#                     return collections
-#                 mat[i] = [0]*N
-#                 mat2[oriIdx] = [0]*N
-#                 for j in range(N):
-#                     mat[j][oriIdx] = 0
-#                     mat2[j][zipIdx] = 0
-#                 mat[i][oriIdx] = maxNum
-#                 mat2[oriIdx][i] = maxNum
+def findBest():
+    global collections
+    global visit
+    while True:
+        for i in range(N):
+            maxNum = max(mat[i])
+            zipline = mat2[mat[i].index(maxNum)]
+            if (maxNum == max(zipline)):  
+                zipIdx = zipline.index(max(zipline))
+                oriIdx = mat[i].index(maxNum)
+                collections[i] = maxNum
+                if collections.count(0) == 0:
+                    return collections
+                mat[i] = [0]*N
+                mat2[oriIdx] = [0]*N
+                for j in range(N):
+                    mat[j][oriIdx] = 0
+                    mat2[j][zipIdx] = 0
+                mat[i][oriIdx] = maxNum
+                mat2[oriIdx][i] = maxNum
 
 # for T in range(int(input())):
 #     N = int(input())

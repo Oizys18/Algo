@@ -7,8 +7,6 @@
 따라서, 크기가 같은 물고기는 먹을 수 없지만, 
 그 물고기가 있는 칸은 지나갈 수 있다.
 """
-# import collections
-# from queue import PriorityQueue
 N = int(input())
 mat = [[*map(int, input().split())] for _ in range(N)]
 size = 2
@@ -27,20 +25,15 @@ def isMap(x, y):
     else:
         return False
 
-# 도달 가능? 거리는?
 def BFS():
     global size
     global shark
-    # Pqueue = PriorityQueue()
     Pqueue = []
-    # queue = collections.deque()
     queue = []
     visit = [[0]*N for _ in range(N)]
     visit[shark[0]][shark[1]] = 1
     queue.append((0, shark[0], shark[1]))
-
     while queue:
-        # depth, x, y = queue.popleft()
         depth, x, y = queue.pop(0)
         if mat[x][y] and mat[x][y] < size:
             Pqueue.append((depth, x, y))
@@ -62,8 +55,6 @@ def solve():
     cnt = 0
     while True:
         pq = BFS()
-        # if pq.empty():
-        #     return time
         if len(pq)==0:
             return time
         far, a, b = sorted(pq)[0]
