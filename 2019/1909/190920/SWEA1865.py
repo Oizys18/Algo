@@ -23,22 +23,22 @@ def findBest():
                 mat[i][oriIdx] = maxNum
                 mat2[oriIdx][i] = maxNum
 
-# for T in range(int(input())):
-#     N = int(input())
-#     mat = [list(map(lambda x : int(x)/100,input().split())) for _ in range(N)]
-#     mat2 = [list(i) for i in zip(*mat)]
-#     mat3 = copy.deepcopy(mat)
-#     collections = [0]*N
-#     visit = 0
-#     bests = findBest()
-#     possbest = 1
-#     for b in bests:
-#         possbest *= b
-#     # print(possbest)
-#     res = 0
-#     poss = 1
-#     temp = []
-#     flag = 0
+for T in range(int(input())):
+    N = int(input())
+    mat = [list(map(lambda x : int(x)/100,input().split())) for _ in range(N)]
+    mat2 = [list(i) for i in zip(*mat)]
+    mat3 = copy.deepcopy(mat)
+    collections = [0]*N
+    visit = 0
+    bests = findBest()
+    possbest = 1
+    for b in bests:
+        possbest *= b
+    # print(possbest)
+    res = 0
+    poss = 1
+    temp = []
+    flag = 0
 
 
 #     # # pp(list(itertools.permutations(range(N),N)))
