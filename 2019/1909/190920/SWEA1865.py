@@ -41,60 +41,60 @@ for T in range(int(input())):
     flag = 0
 
 
-#     # # pp(list(itertools.permutations(range(N),N)))
-#     # for i in itertools.permutations(range(N),N):
-#     #     print(list(i))
-#     for perm in itertools.permutations(range(N),N):        
-#         for x in range(N):
-#             poss *= mat3[x][perm[x]]
-#             # print(poss)
-#             # print(possbest)
-#             if poss < possbest:
-#                 # print('1')
-#                 flag = 1
-#                 poss = 1
-#                 break
-#         if flag == 1:
-#             flag = 0
-#             continue
+    # # pp(list(itertools.permutations(range(N),N)))
+    # for i in itertools.permutations(range(N),N):
+    #     print(list(i))
+    for perm in itertools.permutations(range(N),N):        
+        for x in range(N):
+            poss *= mat3[x][perm[x]]
+            # print(poss)
+            # print(possbest)
+            if poss < possbest:
+                # print('1')
+                flag = 1
+                poss = 1
+                break
+        if flag == 1:
+            flag = 0
+            continue
 
-#         if poss > possbest:
-#             possbest = poss 
-#             poss = 1
-#     # print(possbest)
-#     print("#{} {}".format(T+1,format(possbest*100,'.6f')))
-
-
+        if poss > possbest:
+            possbest = poss 
+            poss = 1
+    # print(possbest)
+    print("#{} {}".format(T+1,format(possbest*100,'.6f')))
 
 
 
 
 
-# for i in list(itertools.permutations(range(10),5)):
-#     print(i)
+
+
+for i in list(itertools.permutations(range(10),5)):
+    print(i)
 
 
 
-#     pp(mat2)
-#     visit = [0]*N
-#     temp = 1
-#     for i in mat2:
-#         temp *= max(i)/100
-#     temp *= 100
-#     print(temp)
-# """
-# """
-# # 큰 것부터 하나씩 찾기! 
-# visit = [0]*N
-# """
+    pp(mat2)
+    visit = [0]*N
+    temp = 1
+    for i in mat2:
+        temp *= max(i)/100
+    temp *= 100
+    print(temp)
+"""
+"""
+# 큰 것부터 하나씩 찾기! 
+visit = [0]*N
+"""
     
     
-# """    # pp(mat)
-# line = [1,2,3,4]
-# visit = [0,0,1,1]
-# mNum = 0
-# for x in range(4):
-#     if visit[x] == 0:
-#         if line[x] > mNum:
-#             mNum = line[x]
-# print(mNum)
+"""    # pp(mat)
+line = [1,2,3,4]
+visit = [0,0,1,1]
+mNum = 0
+for x in range(4):
+    if visit[x] == 0:
+        if line[x] > mNum:
+            mNum = line[x]
+print(mNum)
