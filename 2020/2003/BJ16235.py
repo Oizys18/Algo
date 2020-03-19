@@ -1,4 +1,4 @@
-# 나무 사재기
+# 나무 재테크
 from pprint import pprint as pp 
 N, M, K = map(int, input().split())
 mat = [[5]*N for _ in range(N)]
