@@ -32,7 +32,7 @@
 
 
 def perm_r_2(k):
-    if k == R:
+    if k == N:
         print(arr[0], arr[1], arr[2], arr[3])
     else:
         for i in range(k, N):
@@ -168,3 +168,5 @@ t = [0] * N
 visited = [0] * N
 print('순열 재귀문3')
 perm_r_3(0)
+
+perm_r_2(0)
