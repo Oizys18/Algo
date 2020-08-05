@@ -18,7 +18,23 @@ numbers	return
 [6, 10, 2]	6210
 [3, 30, 34, 5, 9]
 
+
 """
+
+numbers = [3, 30, 34, 5, 9]
+def solution2(numbers):
+    from functools import cmp_to_key
+    answer = list(map(str,numbers))
+    answer.sort(key=cmp_to_key(lambda a,b: int(b+a)-int(a+b)))
+    return answer 
+print(solution2(numbers))
+"""
+python functools 라이브러리의 cmp_to_key는 고차함수를 활용하는 방법 
+"""
+
+
+
+
 def solution(numbers):
     arr = [x for x in range(1001)]
     count = [y for y in range(1001)]
