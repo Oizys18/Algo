@@ -18,8 +18,6 @@ def solution(genres, plays):
     print(genre_cnt)
     for k,v in genre_dict.items():
         print(k,v)
-    
-    print('')
     for v in sorted(genre_dict.values()):
         print(v)
     return answer
