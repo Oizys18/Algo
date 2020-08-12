@@ -29,9 +29,6 @@ def solution(progresses, speeds):
 print(solution(progresses, speeds))
 
 
-
-
-
 def solution(progresses, speeds):
     answer = []
     time = 0

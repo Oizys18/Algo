@@ -8,7 +8,6 @@ def solution(numbers, target):
     answer = 0
     N = len(numbers)
     visit = [0]*N
-    arr = []
 
     return answer
 
