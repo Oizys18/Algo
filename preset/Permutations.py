@@ -18,7 +18,6 @@
 #             arr[i], arr[n - 1] = arr[n - 1], arr[i]
 
 
-
 # def my_perm(n,r):
 #     if r == 0:
 #         print(t)
@@ -30,9 +29,8 @@
 #             arr[i], arr[n-1] = arr[n-1], arr[i]
 
 
-
 def perm_r_2(k):
-    if k == R:
+    if k == N:
         print(arr[0], arr[1], arr[2], arr[3])
     else:
         for i in range(k, N):
@@ -40,10 +38,6 @@ def perm_r_2(k):
             perm_r_2(k + 1)
             arr[k], arr[i] = arr[i], arr[k]
 
-
-
-
-            
 
 """
 k = 0 
@@ -134,20 +128,17 @@ i = 1
 """
 
 
-
-
 def perm_r_3(k):
     if k == N:
         print(t)
     else:
         for i in range(N):
-            if visited[i]: 
+            if visited[i]:
                 continue
             t[k] = arr[i]
             visited[i] = 1
             perm_r_3(k + 1)
             visited[i] = 0
-
 
 
 # print('순열 반복문')
@@ -168,3 +159,5 @@ t = [0] * N
 visited = [0] * N
 print('순열 재귀문3')
 perm_r_3(0)
+
+# perm_r_2(0)
