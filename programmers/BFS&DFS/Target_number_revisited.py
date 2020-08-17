@@ -1,38 +1,35 @@
-numbers = [1, 1, 1, 1, 1,1, 1,1, 1]
+numbers = [1, 1, 1, 1, 1]
 target = 3
 
 
+# def solution(numbers, target):
+#     import collections
+#     answer = 0
+#     stack = collections.deque([(0, 0)])
+#     while stack:
+#         _sum, _idx = stack.popleft()
+#         if _idx == len(numbers):
+#             if _sum == target:
+#                 answer += 1
+#         else:
+#             stack.append((_sum+numbers[_idx], _idx+1))
+#             stack.append((_sum-numbers[_idx], _idx+1))
+#     return answer
+
+
+# print(solution(numbers, target))
+
+answer = 0
 def solution(numbers, target):
-    import copy
-    answer = 0
-    N = len(numbers)
-    # 양수값, 음수값 체크
-    arr_dict = []
-    arr = [0]*N
-    visit = [0]*N
-
-    def DFS(K, arr):
-        # 끝에 도달
-        if K == N:
-            if sum(arr) == target:
-                print('정답!', arr)
-            return
+    def recursive(_sum, idx):
+        global answer
+        if idx == len(numbers):
+            if _sum == target:
+                answer += 1
         else:
-            for i in range(N):
-                if not visit[i]:
-                    print(K, arr)
-                    visit[K] = 1
-                    # K번째 값 + 추가
-                    arr[K] = numbers[K]
-                    DFS(K+1, arr)
-                    visit[K] = 0
-                    # K번째 값 - 추가
-                    arr[K] = -numbers[K]
-                    DFS(K+1, arr)
-                    visit[K] = 1
-
-    DFS(0, arr)
-    print(visit)
+            recursive(_sum+numbers[idx], idx+1)
+            recursive(_sum-numbers[idx], idx+1)
+    recursive(0, 0)
     return answer
 
 
