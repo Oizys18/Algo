@@ -1,17 +1,13 @@
 numbers = '011'
 from itertools import permutations
-
+import math 
 def check_sosu(n):
-    cnt = 0
     if n == 1 or n==0:
         return False
-    for i in range(2,n//2+1):
+    for i in range(2, int(math.floor(math.sqrt(n)))+1):
         if n%i==0:
-            cnt += 1
-    if cnt:
-        return False
-    else:
-        return True 
+            return False
+    return True 
 
 def solution(numbers):
     answer = 0
