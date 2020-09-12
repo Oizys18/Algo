@@ -8,7 +8,8 @@
 .idea
 .vscode
 
-
+# coding test 폴더는 제외합니다 
+coding_test/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
