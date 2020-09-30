@@ -38,8 +38,9 @@ for i in range(3):
     DP[0][i] = mat[0][i] #0번째 줄의 최소 값은 그냥 자기 자신임 
 
 for turn in range(1,N):
-    DP[turn][0] = min(DP[turn-1][1],DP[turn-1][2] + mat[turn][0])
-    DP[turn][1] = min(DP[turn-1][0],DP[turn-1][2] + mat[turn][1])
-    DP[turn][2] = min(DP[turn-1][0],DP[turn-1][1] + mat[turn][2])
-    
+    DP[turn][0] = min(DP[turn-1][1],DP[turn-1][2]) + mat[turn][0]
+    DP[turn][1] = min(DP[turn-1][0],DP[turn-1][2]) + mat[turn][1]
+    DP[turn][2] = min(DP[turn-1][0],DP[turn-1][1]) + mat[turn][2]
+
+print(min(DP[N-1]))
 
