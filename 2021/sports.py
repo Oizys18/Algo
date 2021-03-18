@@ -20,4 +20,52 @@
 
 def solution(n, lost, reserve):
     answer = 0
+    student = [1]*n
+    for l in lost:
+        student[l-1] -= 1 
+    for r in reserve:
+        student[r-1] += 1 
+    
+    for i in range(0,n):
+        if student[i] == 2:
+            if i == 0:
+                if student[i+1] == 0:
+                    student[i+1] += 1
+                    student[i] -= 1
+            if i == n-1:
+                if student[i-1] == 0:
+                    student[i] -=  1
+                    student[i-1] += 1
+            else:
+                if student[i-1] == 0:
+                    student[i] -=  1
+                    student[i-1] += 1
+                elif student[i+1] == 0:
+                    student[i+1] += 1
+                    student[i] -= 1
+    for k in student:
+        if k:
+            answer += 1
     return answer
+
+
+"""
+01) 
+n-1 번째와 n+1번째에 체육복이 없다면, n-1번째에게 먼저 주는 것이 맞다. 
+왜냐면 n+1번쨰는 n+2번째가 줄 수도  있지만, n번째는 n+3에게 줄 수 없기 때문 
+
+n명일 때, 
+-> 0번째가 1번만 보는 것과 n번째가 n-1번만 보는 것을 체크, 
+나머지는 앞 -> 뒤를 보도록 체크하면 된다. 
+
+02) 
+웃기게도, lost에 들어있는 사람이 reserve에 들어있을 수도 있다. 
+처음에 
+for l in lost: 
+    student[l-1] = 0 로 했었는데, 
+이렇게하면 잃어버렸는데 reserve에 있을 때 2로 초기화시켰기 때문에 에러가 난다. 
+lost와 reserve에 들어있으면 -1 +1이라  그냥 1이 맞다. 
+-> lost와 reserve를 둘 다 체크해서 for loop 한 번으로도 가능하다. 
+
+다른 사람은 더 잘 풀었다더라.. 
+"""
