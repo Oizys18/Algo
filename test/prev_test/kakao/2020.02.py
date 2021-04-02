@@ -42,9 +42,7 @@ def solution(key, lock):
                 # 좌표지점에서 비교 
                 for x in range(M):
                     for y in range(M):
-                        
-
-                print('------divider')
+                        print('------divider')
         if checkFit():
             return True 
         else:
