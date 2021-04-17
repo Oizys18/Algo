@@ -6,11 +6,6 @@
 !!!! 간선의 수가 작은 경우 >>> 
 간선을 기준으로 선택하는 크루스칼이 유리함
 """
-
-
-
-
-
 """
 <최소 신장 트리 찾기 - 프림 알고리즘>
 # 한 정점에 연결된 간선들 중 하나씩 선택하면서 최소 신장 트리를 만들어 가는 방식
@@ -33,12 +28,15 @@
 
 # 변수  
 INF = 50000
+# 정점 갯수
 N = 5
-G = []
+# 그래프
+G = [
+    [(1,2),(4,3),(3,2)],[(1,2),(4,3),(3,2)],[(1,2),(4,3),(3,2)],[(1,2),(4,3),(3,2)],[(1,2),(4,3),(3,2)]
+]
 
 
-
-def MST_PRIM(G, s):  # G: 그래프, s: 시작 정점
+"""def MST_PRIM(G, s):  # G: 그래프, s: 시작 정점
     key = [INF] * N  # 가중치를 무한대로 초기화
     pi = [None] * N  # 트리에서 연결될 부모 정점 초기화
     visited = [False] * N  # 방문여부 초기화
@@ -46,10 +44,10 @@ def MST_PRIM(G, s):  # G: 그래프, s: 시작 정점
 
     for _ in range(N):  # 정점의 개수만큼 반복
         minIndex = -1
-        min = INF
+        mini = INF
         for i in range(N):  # 방문 안한 정점중 최소 가중치 정점 찾기
-            if not visited[i] and key[i] < min:
-                min = key[i]
+            if not visited[i] and key[i] < mini:
+                mini = key[i]
                 minIndex = i
         visited[minIndex] = True  # 최소 가중치 정점 방문처리
         for v, val in G[minIndex]:  # 선택 정점의 인접한 정점
@@ -57,9 +55,39 @@ def MST_PRIM(G, s):  # G: 그래프, s: 시작 정점
                 key[v] = val  # 가중치 갱신
             pi[v] = minIndex  # 트리에서 연결될 부모 정점
 
+    return pi
+    
+print(MST_PRIM(G,0))"""
 
 
 
+from collections import defaultdict
+from heapq import *  
+edges = [
+    # (weight, node1, node2)
+    (7,'A','B'),(5,'A','D'),(8,'B','C'),(7,'B','E'),
+    ]
+
+def prim(start_node, edges):
+    mst = list()
+    adjacent_edges = defaultdict(list)
+    for weight, n1, n2 in edges:
+        adjacent_edges[n1].append((weight,n1,n2))
+        adjacent_edges[n2].append((weight,n2,n1))
+
+    connected_nodes = set(start_node) # 전체 노드 갯수를 안다면 리스트로 만들어서 해쉬체크가능 
+    candidate_edge_list = adjacent_edges[start_node]
+    heapify(candidate_edge_list)
+
+    while candidate_edge_list:
+        weight, n1, n2 = heappop(candidate_edge_list)
+        if n2 not in connected_nodes: # 해쉬로 바꾼다면 여기랑 
+            connected_nodes.add(n2) # 여기랑 
+            mst.append((weight,n1,n2))
+            for edge in adjacent_edges[n2]:
+                if  edge[2] not in connected_nodes: # 여기 수정해야함 
+                    heappush(candidate_edge_list,edge)
+    return mst 
 
 """
 <최소 신장 트리 찾기 - 크루스칼 알고리즘>
@@ -105,7 +133,7 @@ def Union(x, y):
 def MST_KRUSKAL(G):
     mst = [] # 공집합
     for i in range(N):
-        Make_Set(i) # 각각 원소 1개를 갖는 상호배타 집합 생성
+        MakeSet(i) # 각각 원소 1개를 갖는 상호배타 집합 생성
 
     G.sort(key = lambda t: t[2]) # 가중치 기준으로 정렬
 
@@ -113,7 +141,9 @@ def MST_KRUSKAL(G):
 
     while len(mst) < N-1:
         u, v, val = G.pop(0) # 최소 가중치 간선 가져오기
-        if Find_Set(u) != Find_Set(v): # 사이클이 생기지 않는 경우만 찾는다(같은 집합이 아닌지 확인)
+        if FindSet(u) != FindSet(v): # 사이클이 생기지 않는 경우만 찾는다(같은 집합이 아닌지 확인)
             Union(u, v)
             mst.append((u, v)) # 트리에 (u, v) 추가가
             mst_cost += val
+
+# MST_KRUSKAL(G)
