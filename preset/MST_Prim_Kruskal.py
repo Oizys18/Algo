@@ -6,11 +6,6 @@
 !!!! 간선의 수가 작은 경우 >>> 
 간선을 기준으로 선택하는 크루스칼이 유리함
 """
-
-
-
-
-
 """
 <최소 신장 트리 찾기 - 프림 알고리즘>
 # 한 정점에 연결된 간선들 중 하나씩 선택하면서 최소 신장 트리를 만들어 가는 방식
@@ -33,9 +28,12 @@
 
 # 변수  
 INF = 50000
+# 정점 갯수
 N = 5
-G = []
-
+# 그래프
+G = [
+    [(1,2),(4,3),(3,2)],[(1,2),(4,3),(3,2)],[(1,2),(4,3),(3,2)],[(1,2),(4,3),(3,2)],[(1,2),(4,3),(3,2)]
+]
 
 
 def MST_PRIM(G, s):  # G: 그래프, s: 시작 정점
@@ -46,10 +44,10 @@ def MST_PRIM(G, s):  # G: 그래프, s: 시작 정점
 
     for _ in range(N):  # 정점의 개수만큼 반복
         minIndex = -1
-        min = INF
+        mini = INF
         for i in range(N):  # 방문 안한 정점중 최소 가중치 정점 찾기
-            if not visited[i] and key[i] < min:
-                min = key[i]
+            if not visited[i] and key[i] < mini:
+                mini = key[i]
                 minIndex = i
         visited[minIndex] = True  # 최소 가중치 정점 방문처리
         for v, val in G[minIndex]:  # 선택 정점의 인접한 정점
@@ -57,7 +55,9 @@ def MST_PRIM(G, s):  # G: 그래프, s: 시작 정점
                 key[v] = val  # 가중치 갱신
             pi[v] = minIndex  # 트리에서 연결될 부모 정점
 
-
+    return pi
+    
+print(MST_PRIM(G,0))
 
 
 
@@ -105,7 +105,7 @@ def Union(x, y):
 def MST_KRUSKAL(G):
     mst = [] # 공집합
     for i in range(N):
-        Make_Set(i) # 각각 원소 1개를 갖는 상호배타 집합 생성
+        MakeSet(i) # 각각 원소 1개를 갖는 상호배타 집합 생성
 
     G.sort(key = lambda t: t[2]) # 가중치 기준으로 정렬
 
@@ -113,7 +113,9 @@ def MST_KRUSKAL(G):
 
     while len(mst) < N-1:
         u, v, val = G.pop(0) # 최소 가중치 간선 가져오기
-        if Find_Set(u) != Find_Set(v): # 사이클이 생기지 않는 경우만 찾는다(같은 집합이 아닌지 확인)
+        if FindSet(u) != FindSet(v): # 사이클이 생기지 않는 경우만 찾는다(같은 집합이 아닌지 확인)
             Union(u, v)
             mst.append((u, v)) # 트리에 (u, v) 추가가
             mst_cost += val
+
+# MST_KRUSKAL(G)
