@@ -1,10 +1,87 @@
 import sys
 sys.stdin = open('BOJ10021.txt','r')
 
+from itertools import combinations as comb
+from collections import defaultdict
+from heapq import *  
+
+# 가중치 계산 
+def check_cost(node1,node2):
+    return (node1[0]-node2[0])**2 + (node1[1]-node2[1])**2
+
+# 프림 알고리즘 
+def prim(start_node, edges):
+    cost = 0
+    # mst = list()
+    adjacent_edges = defaultdict(list)
+    for weight, n1, n2 in edges:
+        adjacent_edges[n1].append((weight,n1,n2))
+        adjacent_edges[n2].append((weight,n2,n1))
+
+    connected_nodes = [0]*(N+1)
+    connected_nodes[start_node] = 1
+    candidate_edge_list = adjacent_edges[start_node]
+    heapify(candidate_edge_list)
+
+    while candidate_edge_list:
+        weight, n1, n2 = heappop(candidate_edge_list)
+        if not connected_nodes[n2]:
+            connected_nodes[n2]= 1
+            # mst.append((weight,n1,n2))
+            cost += weight
+            for edge in adjacent_edges[n2]:
+                if  not connected_nodes[edge[2]]:
+                    heappush(candidate_edge_list,edge)
+    # return mst 
+    return cost
+
+
+# 데이터 입력 
+N,C = map(int,input().split(' '))
+
+# node 만들기 
+# data = dict({i:tuple(map(int,input().split())) for i in range(N)})
+edges = []
+data = {}
+for i in range(N):
+    a,b = map(int,input().split())
+    for node in data.keys():
+        cost = check_cost(data[node],(a,b))
+        if cost >= C:
+            edges.append((cost,node,i))
+    data[i] = (a,b)
+        
+print(edges)
+print(data)
+
+# # # 간선 만들기 (거리비용 C이상)
+# for node1,node2 in comb(data, 2):
+#     cost = check_cost(data[node1],data[node2]) 
+#     if cost >= C:
+#         edges.append((cost,node1,node2))
+
+
+# print(prim(0,edges))
+
+
+
+"""
+프림 알고리즘으로 해도 메모리초과...
+"""
+
+
+
+
+
+
+
+
+
+
+
+""" 최초 제출 코드 
 from collections import defaultdict,deque
 from itertools import combinations as comb
-
-
 N,C = map(int,input().split(' '))
 graph = dict({'e':[],'v':[tuple(map(int,input().split(' '))) for _ in range(N)]})
 
@@ -57,13 +134,8 @@ def kruskal(graph):
             union(node_v,node_u)
             cost += weight
     return cost
-
-# total = 0
-# for cost,a,b in kruskal(graph):
-#     total += cost
-# print(total)
 print(kruskal(graph))
-
+"""
 # 최소신장트리, 크루스칼 알고리즘 인듯? 
 
 #  ㅠㅠ 망했다 크루스칼 안됨 
