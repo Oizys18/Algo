@@ -36,7 +36,7 @@ G = [
 ]
 
 
-def MST_PRIM(G, s):  # G: 그래프, s: 시작 정점
+"""def MST_PRIM(G, s):  # G: 그래프, s: 시작 정점
     key = [INF] * N  # 가중치를 무한대로 초기화
     pi = [None] * N  # 트리에서 연결될 부모 정점 초기화
     visited = [False] * N  # 방문여부 초기화
@@ -57,9 +57,37 @@ def MST_PRIM(G, s):  # G: 그래프, s: 시작 정점
 
     return pi
     
-print(MST_PRIM(G,0))
+print(MST_PRIM(G,0))"""
 
 
+
+from collections import defaultdict
+from heapq import *  
+edges = [
+    # (weight, node1, node2)
+    (7,'A','B'),(5,'A','D'),(8,'B','C'),(7,'B','E'),
+    ]
+
+def prim(start_node, edges):
+    mst = list()
+    adjacent_edges = defaultdict(list)
+    for weight, n1, n2 in edges:
+        adjacent_edges[n1].append((weight,n1,n2))
+        adjacent_edges[n2].append((weight,n2,n1))
+
+    connected_nodes = set(start_node) # 전체 노드 갯수를 안다면 리스트로 만들어서 해쉬체크가능 
+    candidate_edge_list = adjacent_edges[start_node]
+    heapify(candidate_edge_list)
+
+    while candidate_edge_list:
+        weight, n1, n2 = heappop(candidate_edge_list)
+        if n2 not in connected_nodes: # 해쉬로 바꾼다면 여기랑 
+            connected_nodes.add(n2) # 여기랑 
+            mst.append((weight,n1,n2))
+            for edge in adjacent_edges[n2]:
+                if  edge[2] not in connected_nodes: # 여기 수정해야함 
+                    heappush(candidate_edge_list,edge)
+    return mst 
 
 """
 <최소 신장 트리 찾기 - 크루스칼 알고리즘>
