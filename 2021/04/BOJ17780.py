@@ -2,47 +2,61 @@
 import sys
 sys.stdin = open('BOJ17780.txt','r')
 from pprint import pprint as pp 
-from collections import defaultdict
-from heapq import * as heapq
 
-# input
-N,K = map(int,input().split())
-mat = [list(map(int,input().split())) for _ in range(N)]
-pp(mat)
-
-# 위 아래 왼 오른
-mv = {
-    1: (-1,0),
-    2: (1,0),
-    3: (0,1),
-    4: (0,-1)
-}
-pp(mv)
-
-# 말 위치 정보
-move = {k:list(map(int,input().split())) for k in range(K)}
-pp(move)
 
 # 다음 칸 정보 확인 
 def check_next (nx,ny):
-    if 0 <= nx <= N and 0 <= ny <= N:
-        if mat[nx][ny] == 0:
-            # 하양
-            pass
-        elif mat[nx][ny] ==1:
-            # 빨강
-            pass
-        elif mat[nx][ny] == 2:
-            # 파랑
-            pass
+    return 0 <= nx < N and 0 <= ny <N and info_mat[nx][ny]!=2
 
-    # 맵 밖으로 나감 
-    else:return False
+#방향전환
+def change_direction(direction):
+    if direction%2:return direction+1
+    return direction-1
 
-# 말 위치 정보 
+# 방향, →, ←, ↑, ↓
+mv = {
+    1: (0,1),
+    2: (0,-1),
+    3: (-1,0),
+    4: (1,0)
+}
 
+N,K = map(int,input().split())
+info_mat = [list(map(int,input().split())) for _ in range(N)]
+mat = [[[] for _ in range(N)] for _ in range(N)]
+data = []
 
-# 풀이 
+for k in range(K):
+    x,y,direction = map(int,input().split())
+    mat[x-1][y-1].append(k)
+    data.append([k,x-1,y-1,direction])
+
 def solve():
-    return 
+    for turn in range(1000):
+        for k,x,y,d in data:
+            if mat[x][y][0] != k: continue
+            nx, ny = x+mv[d][0], y+mv[d][1]
+
+            if not check_next(nx,ny):
+                # blue || out of range : 방향전환
+                d = change_direction(d)
+                data[k][3] = d
+                nx, ny = x+mv[d][0], y+mv[d][1] 
+
+                if not check_next(nx,ny):
+                    continue
+            if info_mat[nx][ny]==1:
+                mat[x][y].reverse()
+
+            mat[nx][ny] += mat[x][y]
+            mat[x][y] = [] 
+
+            for nk in mat[nx][ny]:
+                data[nk][1] = nx
+                data[nk][2] = ny
+            if len(mat[nx][ny])>=4:
+                return turn +1
+    return -1
+
+print(solve())
 
