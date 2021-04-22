@@ -1,5 +1,7 @@
 import sys
 sys.stdin = open('BOJ1197.txt','r')
+from collections import defaultdict
+from heapq import *  
 """
 최소신장트리 문제, 
 기본기 
@@ -13,3 +15,59 @@ sys.stdin = open('BOJ1197.txt','r')
 
 V,E = map(int,input().split())
 graph = [list(map(int,input().split())) for _ in range(E)]
+"""graph
+v1, v2, weight
+"""
+def my_prim(start,edges):
+    mst = list()
+    # 인접 정점 정보 저장
+    adj_edges = defaultdict(list)
+    for n1,n2,w in edges:
+        adj_edges[n1].append((w,n1,n2))
+        adj_edges[n2].append((w,n2,n1))
+    
+    # 시작 정점 추가 
+    connected = [0]*(V+1)
+    connected[start] = 1
+    
+    # 후보 정점들 초기화
+    candidate = adj_edges[start]
+    print(candidate,'can')
+    heapify(candidate)
+    while candidate:
+        w,n1,n2 = heappop(candidate)
+        if not connected[n2]:
+            connected[n2] = 1
+            mst.append((w,n1,n2))
+
+            for edge in adj_edges[n2]:
+                if not connected[edge[2]]:
+                    heappush(candidate,edge)
+    return mst 
+
+# # 프림 알고리즘
+# def prim(start_node, edges):
+#     cost = 0
+#     # mst = list()
+#     adjacent_edges = defaultdict(list)
+#     for n1, n2, weight in edges:
+#         adjacent_edges[n1].append((weight,n1,n2))
+#         adjacent_edges[n2].append((weight,n2,n1))
+
+#     connected_nodes = [0]*(V+1)
+#     connected_nodes[start_node] = 1
+#     candidate_edge_list = adjacent_edges[start_node]
+#     heapify(candidate_edge_list)
+
+#     while candidate_edge_list:
+#         weight, n1, n2 = heappop(candidate_edge_list)
+#         if not connected_nodes[n2]:
+#             connected_nodes[n2]= 1
+#             # mst.append((weight,n1,n2))
+#             cost += weight
+
+#             for edge in adjacent_edges[n2]:
+#                 if  not connected_nodes[edge[2]]:
+#                     heappush(candidate_edge_list,edge)
+#     return cost
+print(my_prim(1,graph))
