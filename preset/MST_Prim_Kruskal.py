@@ -90,6 +90,38 @@ def prim(start_node, edges):
     return mst 
 
 """
+# graph 형태
+# weight,v1, v2
+
+def my_prim(start,edges):
+    mst = list()
+
+    # 인접 정점 정보 저장
+    adj_edges = defaultdict(list)
+    for w,n1,n2 in edges:
+        adj_edges[n1].append((w,n1,n2))
+        adj_edges[n2].append((w,n2,n1))
+    
+    # 시작 정점 추가 (set()으로 만들어도 됨)
+    connected = [0]*(V+1)
+    connected[start] = 1
+    
+    candidate = adj_edges[start]  # 초기 정점을 후보 리스트에 넣는다.
+
+    heapify(candidate)  # heap으로 만들어서 weight이 제일 낮은게 제일 먼저 나오도록 함 
+
+    while candidate:
+        w,n1,n2 = heappop(candidate)
+        if not connected[n2]:
+            connected[n2] = 1
+            mst.append((w,n1,n2))
+
+            for edge in adj_edges[n2]:
+                if not connected[edge[2]]:
+                    heappush(candidate,edge)
+    return mst 
+"""
+"""
 <최소 신장 트리 찾기 - 크루스칼 알고리즘>
 # 최소 가중치 간선을 하나씩 선택해서 최소 신장 트리를 찾는 알고리즘
 # Disjoing-set을 이용한다. 
@@ -134,11 +166,8 @@ def MST_KRUSKAL(G):
     mst = [] # 공집합
     for i in range(N):
         MakeSet(i) # 각각 원소 1개를 갖는 상호배타 집합 생성
-
     G.sort(key = lambda t: t[2]) # 가중치 기준으로 정렬
-
     mst_cost = 0 # MST 가중치
-
     while len(mst) < N-1:
         u, v, val = G.pop(0) # 최소 가중치 간선 가져오기
         if FindSet(u) != FindSet(v): # 사이클이 생기지 않는 경우만 찾는다(같은 집합이 아닌지 확인)
