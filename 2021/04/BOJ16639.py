@@ -12,14 +12,16 @@ def calc(a,what,c):
 
 N = int(input())
 line = input()
-mx = [[0]*N for _ in range(N)]
-mn = [[0]*N for _ in range(N)]
+mx = [[-sys.maxsize]*N for _ in range(N)]
+mn = [[sys.maxsize]*N for _ in range(N)]
 
-for i in range(0,N-2,2):
-    mx[i][i],mx[i+2][i+2] = int(line[i]),int(line[i+2])
-    mn[i][i],mn[i+2][i+2] = int(line[i]),int(line[i+2])
-    mx[i][i+2] = calc(int(line[i]),line[i+1],int(line[i+2]))
-    mn[i][i+2] = calc(int(line[i]),line[i+1],int(line[i+2]))
+for i in range(0,N):
+    if line[i].isnumeric():
+        mx[i][i] = mn[i][i] = int(line[i]) 
+for j in range(0,N-2,2):
+    mx[j][j+2] = calc(int(line[j]),line[j+1],int(line[j+2]))
+    mn[j][j+2] = calc(int(line[j]),line[j+1],int(line[j+2]))
+
 print("LINE",line)
 for i in range(4,N,2):
     for j in range(i,N,2):
@@ -48,10 +50,24 @@ for i in range(4,N,2):
         mx[j-i][j] = mmx
         mn[j-i][j] = mmn
         print(mmx,mmn)
+# for j in range(2,N,2):
+#     for i in range(0,N-j,2):
+#         for k in range(2,j+1,2):
+#             print("i,i+k-2,i+k-1,i+k,i+j:",i,i+k-2,i+k-1,i+k,i+j)
+#             temp = [0]*4
+#             temp[0] = calc(mn[i][i + k - 2], line[i + k - 1], mn[i + k][i + j]);
+#             temp[1] = calc(mn[i][i + k - 2], line[i + k - 1], mx[i + k][i + j]);
+#             temp[2] = calc(mx[i][i + k - 2], line[i + k - 1], mn[i + k][i + j]);
+#             temp[3] = calc(mx[i][i + k - 2], line[i + k - 1], mx[i + k][i + j]);
+
+#             temp.sort()
+
+#             mn[i][i + j] = min(temp[0],mn[i][i+j]);
+#             mx[i][i + j] = max(temp[3],mx[i][i+j]);
+
+#             print(mn[i][i + j], mx[i][i + j])
 print(mx[0][N-1])
 
-pp(mx)
-pp(mn)
 
 """
 왜 틀리는지 이해 못하겠음; ㅠ 
