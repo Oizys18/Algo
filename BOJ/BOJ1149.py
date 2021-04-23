@@ -2,7 +2,7 @@
 
 import sys
 from pprint import pprint as pp 
-sys.stdin = open('1149.txt', 'r')
+sys.stdin = open('BOJ1149.txt', 'r')
 
 
 # 내 풀이 

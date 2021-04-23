@@ -1,3 +1,4 @@
+# 프로그래머스, 권투시합, 크루스칼인듯 
 def solution(n, results):
     answer = 0
     win = dict()
