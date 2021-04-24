@@ -1,3 +1,0 @@
-b = []
-
-print(not b)
