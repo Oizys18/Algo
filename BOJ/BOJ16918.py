@@ -4,19 +4,7 @@ from pprint import pprint as pp
 
 
 R,C,N = map(int,input().split())
-mat = [input() for _ in range(R)]
-pp(mat)
-
-
-
-
-
-
-
-
-
-
-
+mat = [[0 if i=='.' else 1 for i in input()] for _ in range(R)]
 
 
 
