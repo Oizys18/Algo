@@ -4,15 +4,6 @@ sys.stdin = open('BOJ7662.txt', 'r')
 
 
 
-
-
-
-
-
-
-
-
-"""
 from heapq import *
 
 for _ in range(int(input())):
@@ -31,7 +22,11 @@ for _ in range(int(input())):
         print(f"{max(HQ)} {min(HQ)}")
     else:
         print('EMPTY')
-"""
+
+
+
+
+
 """
 시간초과
 heap은 logN 시간 복잡도 
