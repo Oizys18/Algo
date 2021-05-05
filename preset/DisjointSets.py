@@ -10,11 +10,12 @@ def Union(x, y):
     p[FindSet(y)] = FindSet(x)
 
 N = 8
-p = [0]*(N+1)
-for i in range(N+1):
+p = [0]*N
+for i in range(N):
     MakeSet(i)
 line = [(1,3),(2,5),(3,4),(1,4),(2,7)]
 for x,y in line:
+    print(x,y)
     Union(x,y)
 print(p)
 
