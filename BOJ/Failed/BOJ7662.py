@@ -25,8 +25,6 @@ for _ in range(int(input())):
 
 
 
-
-
 """
 시간초과
 heap은 logN 시간 복잡도 
