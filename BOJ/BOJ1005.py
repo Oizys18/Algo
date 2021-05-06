@@ -1,44 +1,41 @@
 import sys
 from pprint import pprint as pp 
 sys.stdin = open('BOJ1005.txt', 'r')
-from heapq import * 
+
 from collections import deque 
 def solve(B,total,requirements):
-    # total += delays[B-1]
-    print('========  B:',B,' total:',total,'  =========')
-    # if not ruleD[B]:
-    #     return total
-    # else:
-    #     temp = 0
-    #     nxt = 0
-    #     for b in ruleD[B]:
-    #         if temp <= delays[b-1]:
-    #             temp = delays[b-1]
-    #             nxt = b 
-    #     return solve(nxt,total)
-    
-
-
-
-    dq = deque(requirements)
+    dq = deque()
+    dq.append(B)
     visit = [0]*(N+1)
-    visit[B] = 1 
     while dq:
-        print(dq)
+        print('dq:',dq)
         build = dq.popleft()
-        cost = 0
-        nxt_build = 0
-        for nxt in ruleD[build]:
-            if not visit[nxt]:
-                if cost <= delays[nxt-1]:
-                    cost = delays[nxt-1]
-                    nxt_build = nxt
-                    visit[nxt] = 1
-        total += cost
-        dq.append(nxt_build)
+        print('popped node:',build)
+        total += delays[build-1]
+        print('added total:',total)
+        if not visit[build]:
+            visit[build] =1
+            nxt_build = 0
+            cost = 0
+            pre_build = set()
+            for nxt in ruleD[build]:
+                if not visit[nxt]:
+                    pre_build.update(ruleD[nxt])
+            print('선테크:',pre_build)
+            for nxt in ruleD[build]:
+                if not visit[nxt] and nxt not in pre_build:
+                    if cost <= delays[nxt-1]:
+                        cost = delays[nxt-1]
+                        nxt_build = nxt
+            print('다음빌드:',nxt_build)  
+            print('--------------------')       
+            if nxt_build:
+                dq.append(nxt_build)
     return total
 
-# 아마도 재귀가 아니라 while문 돌려서 queue로 하나씩 뽑아야할듯?
+def solve_recur(W,now,total):
+    
+
 
 T = int(input())
 for _ in range(T):
@@ -63,3 +60,4 @@ for _ in range(T):
     print('                             ')
     print('                             ')
     
+    print(solve(W,0,ruleD[W]))
