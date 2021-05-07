@@ -33,7 +33,7 @@ def solve(B,total,requirements):
                 dq.append(nxt_build)
     return total
 
-def solve_recur(W,now,total):
+# def solve_recur(W,now,total):
     
 
 
@@ -49,6 +49,7 @@ for _ in range(T):
         A,B = rule 
         ruleD[B].append(A)
 
+
     print('N,K,W:',N,K,W)
     print('rules:',rules)
     print('ruleDictionary:',ruleD)
@@ -61,3 +62,12 @@ for _ in range(T):
     print('                             ')
     
     print(solve(W,0,ruleD[W]))
+
+
+"""
+다음 방문 테크 선택에 있어서 오류가 있음 
+-> 목적지에서 되돌아가는 방식으로 만들었는데, 
+최초에 아무런 요구사항이 없는 상황에서 시작하는 알고리즘으로 만들어야할 듯 
+
+아니면 되돌아가는 알고리즘을 수정해야할듯 
+"""
