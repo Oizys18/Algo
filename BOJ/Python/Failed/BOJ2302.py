@@ -7,5 +7,5 @@ for _ in range(M):
     seats[int(input())] = 1
 print(seats)
 
-def solve():
+# def solve():
     
