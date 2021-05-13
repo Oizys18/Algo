@@ -5,10 +5,40 @@ from pprint import pprint as pp
 
 R,C,N = map(int,input().split())
 mat = [[0 if i=='.' else 1 for i in input()] for _ in range(R)]
+boom = [(1,0),(0,1),(-1,0),(0,-1)]
+bombs = set()
+def isMap(x,y):
+    return 0<= x < R and 0<= y <C
+
+time = 0
+while time != N:
+    time += 1
+    explode = set()
+    for x in range(R):
+        for y in range(C):
+            if mat[x][y]:
+                mat[x][y] += 1 
+                if mat[x][y] == 4:
+                    mat[x][y] = 0 
+                    for dx,dy in boom:
+                        nx,ny = x+dx, y+dy
+                        if isMap(nx,ny):
+                            explode.add((nx,ny))
+            else:
+                if time > 1:
+                    mat[x][y] = 1 
+    for x,y in explode:
+        mat[x][y] = 0
 
 
-
-
+for x in range(R):
+    temp =''
+    for y in range(C):
+        if mat[x][y]:
+            temp += 'O'
+        else:
+            temp += '.'
+    print(temp)
 
 
 """
