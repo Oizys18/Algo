@@ -8,3 +8,5 @@ m,n = map(int,input().split())
 A = cycle([int(input()) for _ in range(m)])
 B = cycle([int(input()) for _ in range(n)])
 
+pp(A)
+pp(B)
