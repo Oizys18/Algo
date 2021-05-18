@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/6373
 import sys
 from pprint import pprint as pp 
 sys.stdin = open('BOJ6373.txt', 'r')
