@@ -14,8 +14,10 @@ pp(mat)
 students = set()
 teachers = set()
 for x in range(N):
-    for y in range(N):
+    for y in range(N):  
         if mat[x][y] == 'S':
             students.add((x,y))
         elif mat[x][y] == 'T':
             teachers.add((x,y))
+print('students:',students)
+print('teachers:',teachers)
