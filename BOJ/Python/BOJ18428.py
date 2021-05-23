@@ -19,5 +19,7 @@ for x in range(N):
             students.add((x,y))
         elif mat[x][y] == 'T':
             teachers.add((x,y))
+
+
 print('students:',students)
 print('teachers:',teachers)
