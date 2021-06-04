@@ -12,5 +12,4 @@ while True:
     for d in data:
         race, cost, *paths = d
         print(race,cost,paths)
-
-
+    print(d)
