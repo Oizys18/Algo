@@ -37,10 +37,11 @@ while True:
         Map[room] = (race,int(cost),[*map(int,paths)])
         room +=1 
     visit = [0]*(N+1)
-    check = 0
+    
     def crawl(room,gold):
         if room == N:
-            return True
+            check = 1
+            return 
         else:
             LT = Map[room][0]
             if LT == 'L':
@@ -58,8 +59,5 @@ while True:
                     crawl(i,gold)
                     visit[i] = 0
     crawl(1,0)
-    if check:
-        print('Yes')
-    else:
-        print('No')
+    
     
