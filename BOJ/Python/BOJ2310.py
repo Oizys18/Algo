@@ -22,9 +22,6 @@ sys.stdin=open('BOJ2310.txt','r')
 출력은 각 미로마다 한 줄씩으로 이루어진다. 각 줄에는 1번 방에서 n번 방까지 갈 수 있는지를 "Yes" 또는 "No"로 출력한다.
 """
 
-from collections import defaultdict
-
-
 while True:
     N = int(input())
     if N == 0:
@@ -37,27 +34,32 @@ while True:
         Map[room] = (race,int(cost),[*map(int,paths)])
         room +=1 
     visit = [0]*(N+1)
+    check = [0]
     
     def crawl(room,gold):
         if room == N:
-            check = 1
+            check[0] = 1 
             return 
         else:
-            LT = Map[room][0]
-            if LT == 'L':
-                if gold < Map[room][1]:
-                    gold = Map[room][1]
-            elif LT == 'T':
-                if gold >= Map[room][1]:
-                    gold -= Map[room][1]
-                else:return 
-            for i in Map[room][2]:
-                if not i:
-                    break 
-                if not visit[i]:
-                    visit[i] = 1 
-                    crawl(i,gold)
-                    visit[i] = 0
+            for nxt in Map[room][2]:
+                if nxt == 0:
+                    break
+                else:
+                    if not visit[nxt]:
+                        visit[nxt] = 1     
+                        if Map[nxt][0]=='L':
+                            if Map[nxt][1] > gold:
+                                crawl(nxt,Map[nxt][1])
+                            else:
+                                crawl(nxt,gold)
+                        elif Map[nxt][0]=='T':
+                            if Map[nxt][1] <= gold:
+                                crawl(nxt,gold-Map[nxt][1])
+                        else:
+                            crawl(nxt,gold)
+                        visit[nxt] = 0
     crawl(1,0)
-    
-    
+    if check[0]:
+        print('Yes')
+    else:
+        print('No')
