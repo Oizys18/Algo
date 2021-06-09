@@ -30,6 +30,5 @@ def solve(x,y):
 
 visit =[[0]*C for _ in range(R)]
 for i in range(C):
-    print(0,i,'----------')
     solve(0,i)
     
