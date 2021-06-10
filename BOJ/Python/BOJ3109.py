@@ -32,3 +32,6 @@ visit =[[0]*C for _ in range(R)]
 for i in range(C):
     solve(0,i)
     
+"""
+직전 탐색 데이터 저장 방법 필요 
+"""
