@@ -15,7 +15,7 @@ def solve(x,y):
     if y == C-1:
         return True
     else:
-        for i in range(3):
+        for i in range(3):  
             nx,ny = x+pipes[i][0], y+pipes[i][1]
             if isEmpty(nx,ny) and not visit[nx][ny]:
                 visit[nx][ny] = 1 
