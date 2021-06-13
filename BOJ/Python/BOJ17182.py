@@ -6,10 +6,27 @@ sys.stdin = open('BOJ17182.txt','r')
 # 행성갯수, 행성위치
 N,K = map(int,input().split())
 time = [[*map(int,input().split())] for _ in range(N)]
-def travel(now,total): 
+MAX = 10000
+visit = [0]*N
 
+score = [MAX]*N
 
+def travel(now,total):
+    print(now,total)
+    score[now] = min(score[now],total)
+    if sum(visit) == N:
+        print(score)
+        print(visit)
+        return total 
+    else:
+        for i in range(N):
+            if i != now:
+                visit[i] = 1
+                return travel(i,total+time[now][i])
+                visit[i] = 0
 
 travel(K,0)
-print(N,K)
-print(time)
+
+"""
+플로이드 와샬 문제임 
+"""
