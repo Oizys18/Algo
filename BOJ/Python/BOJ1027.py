@@ -55,3 +55,9 @@ def solve(N,buildings):
 # [1, 5, 3, 2, 6, 3, 2, 6, 4, 2, 5, 7, 3, 1, 5]
 
 print(solve(N,buildings))
+
+"""
+
+ccw 알고리즘으로 풀어야 한다고 함.. 
+
+"""
