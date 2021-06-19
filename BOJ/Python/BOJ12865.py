@@ -4,8 +4,8 @@ from pprint import pprint as pp
 N, K = map(int,input().split())
 goods = [[*map(int,input().split())] for _ in range(N)]
 dp = [[0]*(K+1) for _ in range(N+1)]
-print(goods)
-print(N,K)
+
+# 배낭문제, dp해야함 
 def solve(K,N,goods):
     for i in range(N):
         for w in range(K):
@@ -19,6 +19,8 @@ def solve(K,N,goods):
     
 print(solve(K,N,goods))
 pp(dp)
+
+
 """
 #Brute force, 어림도 없다.. ㅠ 
 
