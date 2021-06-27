@@ -6,6 +6,7 @@ N = int(input())
 mat =[[*map(int,input().split())] for _ in range(N)]
 pp(mat)
 
+
 # 기준점 x,y와 d1,d2가 정해지면 선거구가 결정됨 
 for x in range(N):
     for y in range(N):
@@ -13,7 +14,8 @@ for x in range(N):
             continue
         check = [[0]*N for _ in range(N)]
         for d1 in range(1,N-x-1):
-            for d2 in range(1,N-x-d1):
+            # print(min(N-x-d1+1,N-y-1),N-y-1,N-x-d1+1 )
+            for d2 in range(1,min(N-x-d1,N-y)):
                 # x,y에서 d1 만큼 좌하단, d2만큼 우하단, d1만큼 우상단, d2만큼 좌상단 이동 
                 top =(x,y)
                 left = (x+d1,y-d1)
@@ -37,10 +39,10 @@ for x in range(N):
                             check[r][c] = 3
                         elif right[0]< r < N and bottom[1]<= c < N : 
                             check[r][c] = 4
-                check[top[0]][top[1]] = 5
-                check[left[0]][left[1]] = 5
-                check[right[0]][right[1]] = 5
-                check[bottom[0]][bottom[1]] = 5
+                # check[top[0]][top[1]] = 5
+                # check[left[0]][left[1]] = 5
+                # check[right[0]][right[1]] = 5
+                # check[bottom[0]][bottom[1]] = 5
 
                 pp(check)
 
