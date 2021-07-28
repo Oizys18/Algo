@@ -15,3 +15,6 @@ Given a list of slices needed to fed each of the contestants,
 
 N = int(input())
 slices = [*map(int,input().split())]
+pp(N)
+pp(slices)
+
