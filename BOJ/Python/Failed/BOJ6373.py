@@ -16,7 +16,7 @@ while True:
             print('newN:',newN)
             flag = 0
             check = ''
-            # for cw in NC:
+            # for cw in NC:   
             #     if cw == newN[0]:
                     
     except:
