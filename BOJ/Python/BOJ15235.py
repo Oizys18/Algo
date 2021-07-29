@@ -15,6 +15,24 @@ Given a list of slices needed to fed each of the contestants,
 
 N = int(input())
 slices = [*map(int,input().split())]
-pp(N)
-pp(slices)
-
+time = 0 
+cnt = 0
+answer = [0]*N
+while cnt < N:
+    for i in range(N):
+        if slices[i] == 0 :
+            continue
+        time += 1 
+        slices[i] -= 1 
+        if slices[i] == 0:
+            answer[i] = time 
+            cnt += 1 
+        if cnt == N:
+            break    
+    if cnt == N:
+        break
+for x in range(N):
+    if x == N-1:
+        print(answer[x])
+    else:
+        print(answer[x], end=' ')
