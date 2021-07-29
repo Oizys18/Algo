@@ -6,18 +6,16 @@ from itertools import cycle
 while True:
     try: 
         N = input()
-        NC = cycle(N)
+        # NC = cycle(N)
         Nlen = len(N)
         totalCnt = 0
-
+        start = N[0]
+        print(start)
         for i in range(2,Nlen+1):
             print('i:',i)
             newN = str(int(N)*i)
             print('newN:',newN)
-            flag = 0
-            check = ''
-            # for cw in NC:   
-            #     if cw == newN[0]:
-                    
+            print(newN.index(start))
+            
     except:
         break
