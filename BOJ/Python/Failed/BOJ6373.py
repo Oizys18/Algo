@@ -15,7 +15,8 @@ while True:
             print('i:',i)
             newN = str(int(N)*i)
             print('newN:',newN)
-            print(newN.index(start))
             
+            # print(newN.index(start))
+ 
     except:
         break
