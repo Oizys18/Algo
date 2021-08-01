@@ -2,21 +2,27 @@
 import sys
 from pprint import pprint as pp 
 sys.stdin = open('BOJ6373.txt', 'r')
-from itertools import cycle 
+# from itertools import cycle 
+
 while True:
-    try: 
+    try:
         N = input()
-        # NC = cycle(N)
-        Nlen = len(N)
-        totalCnt = 0
-        start = N[0]
-        print(start)
-        for i in range(2,Nlen+1):
-            print('i:',i)
-            newN = str(int(N)*i)
-            print('newN:',newN)
+        lN = len(N)
+        print(N)
+        start= N[0]
+        for i in range(lN):
             
-            # print(newN.index(start))
- 
+            print(N[i])
+    
+
     except:
         break
+# # NC = cycle(N)
+# Nlen = len(N)
+# totalCnt = 0
+# start = N[0]
+# print(start)
+# for i in range(2,Nlen+1):
+#     print('i:',i)
+#     newN = str(int(N)*i)
+#     print('newN:',newN)
