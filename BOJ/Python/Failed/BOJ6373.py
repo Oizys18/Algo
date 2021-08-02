@@ -11,7 +11,6 @@ while True:
         print(N)
         start= N[0]
         for i in range(lN):
-            
             print(N[i])
     
 
