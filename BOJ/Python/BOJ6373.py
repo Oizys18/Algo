@@ -12,20 +12,20 @@ while True:
         for j in range(2,lN+1):
             flag = 0
             M = str(j*int(N))
-            if len(M) != lN:
-                flag = 1 
-                break
+            if len(M) < lN:
+                M = '0'+M
+            cycle = 0
             for i in range(lN):
+                check = 0
                 if M[i] == start:
-                    print(M)
                     for k in range(lN):
-                        if M[(i+k)%lN] != N[k]:
-                            flag = 1
-                            break 
-                    if flag:
+                        if M[(i+k)%lN] == N[k]:
+                            check += 1
+                    if check == lN:
+                        cycle = 1
                         break
-                    print('cycle!')
-            if flag:
+            if not cycle:
+                flag = 1 
                 break
         if flag:
             print(f"{N} is not cyclic")
