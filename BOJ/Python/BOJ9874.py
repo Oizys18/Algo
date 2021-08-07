@@ -5,67 +5,73 @@ sys.stdin = open('BOJ9874.txt', 'r')
 N = int(input())
 holes = [[*map(int,input().split())] for _ in range(N)]
 
+holes.sort() # 와 ㅋㅋㅋ 이거 하나 때문에 너무 오래 실수함 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ 치사하다 치사해 
+
 def get_hole(hole):
-    sx,sy = hole
-    nx = 1000000000
-    nxt_i = 0
+    x,y = holes[hole]
     for i in range(N):
         a,b = holes[i]
-        if sy == b and a > sx:
-            if a < nx:
-                nx = a
-                nxt_i = i
-    if nx == 1000000000:
-        return 0 
-    return nxt_i
+        if y == b and a > x:
+            return i
+    return False 
 
-def check(paired):
-    for i in range(N):
+def check(paired,hole):
         visit = [0]*N
-        visit[i] = 1
-        
-        # 다음 웜홀 구하기 
-        nxt_hole = get_hole(holes[i])
-        while nxt_hole: 
-            for x,y in paired:
-                flag = 0 
-                if nxt_hole == x:
-                    if not visit[y]:
-                        visit[y] = 1 
-                        nxt_hole = get_hole(holes[y])
-                    else:
-                        flag = 1
-                        break 
-                elif nxt_hole == y:
-                    if not visit[x]:
-                        visit[x] = 1 
-                        nxt_hole = get_hole(holes[x])
-                    else:
-                        flag = 1
-                        break 
-            if flag:
-                break        
-        if flag:
-            return True 
+        while True:
+            if visit[hole]: return True 
+            visit[hole] = True 
+            hole = get_hole(hole)
+            if not hole:
+                return False    
+            hole = paired[hole]
+            
+answer= 0
+def pair(k,visit,paired,connected):
+    global answer
+    if connected == N:
+        for i in range(N):
+            if check(paired,i):
+                answer += 1
+                return True
+        return 0 
+                
+    for i in range(k,N):
+        if visit[i]:continue 
+        visit[i] = 1 
+        for j in range(i+1,N): 
+            if visit[j]:continue 
+            visit[j] = 1 
+            paired[i],paired[j] = j, i
+            pair(i+1,visit,paired,connected+2)
+            paired.pop(i)
+            paired.pop(j)
+            visit[j] = 0 
+        visit[i] = 0
+    return 0
 
-answer=[]
-def pair(k,visit,paired):
-    if k == N//2 :
-        if check(paired):
-            answer.append(1)  
-        return 
-    else:
-        for i in range(k,N):
-            if not visit[i]:
-                visit[i] = 1 
-                for j in range(i,N):
-                    if not visit[j]:
-                        visit[j] = 1 
-                        paired.append((i,j))
-                        pair(k+1,visit,paired)
-                        paired.pop()
-                        visit[j] = 0 
-                visit[i] = 0
-pair(0,[0]*N,[])
 
-print(sum(answer))
+pair(0,[0]*N,dict(),0)
+print(answer)
+
+# 1 2 3 4 5 6 
+# 12 34 56
+# 12 35 46 
+# 12 36 45 
+# 13 24 56
+# 13 25 46 
+# 13 26 45 
+# 14 23 56
+# 14 25 36
+# 14 26 35  
+# 15 23 46
+# 15 24 36
+# 15 26 34 
+# 16 23 45 
+# 16 24 35
+# 16 25 34  
+
+
+
+
+
+
