@@ -57,6 +57,10 @@ class Solution:
                 d[val] -= 1 
                 if sum(d.values()) == 0:
                     R = idx 
+                    for k in range(L,R):
+                        if val in t:
+                            d[val] += 1 
+                            L = 
                     pass 
                 pass
 
