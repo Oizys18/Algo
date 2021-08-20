@@ -36,33 +36,33 @@ s and t consist of uppercase and lowercase English letters.
 Follow up: Could you find an algorithm that runs in O(m + n) time?
 """
 
-class Solution:
-    def minWindow(self, s: str, t: str) -> str:
-# L ------R 
-#     L---R
-#     L-------------R
-#       L-----------R
-        d = dict()
-        for i in t:
-            if not d.get(i):
-                d[i] = 1
-            else:
-                d[i] += 1
+# class Solution:
+#     def minWindow(self, s: str, t: str) -> str:
+# # L ------R 
+# #     L---R
+# #     L-------------R
+# #       L-----------R
+#         d = dict()
+#         for i in t:
+#             if not d.get(i):
+#                 d[i] = 1
+#             else:
+#                 d[i] += 1
         
-        L = 0
-        R = 0
+#         L = 0
+#         R = 0
 
-        for idx,val in enumerate(s):
-            if val in t:
-                d[val] -= 1 
-                if sum(d.values()) == 0:
-                    R = idx 
-                    for k in range(L,R):
-                        if val in t:
-                            d[val] += 1 
-                            L = 
-                    pass 
-                pass
+#         for idx,val in enumerate(s):
+#             if val in t:
+#                 d[val] -= 1 
+#                 if sum(d.values()) == 0:
+#                     R = idx 
+#                     for k in range(L,R):
+#                         if val in t:
+#                             d[val] += 1 
+#                             L = 
+#                     pass 
+#                 pass
 
-    def contract():
-        return 
+#     def contract():
+#         return 
