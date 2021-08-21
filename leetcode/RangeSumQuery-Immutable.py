@@ -14,7 +14,3 @@ class NumArray:
 # param_1 = obj.sumRange(left,right)
 
 numArray = NumArray([-2, 0, 3, -5, 2, -1])
-print(numArray.arr)
-print(numArray.sumRange(0, 2))
-print(numArray.sumRange(2,5))
-print(numArray.sumRange(0,5))
