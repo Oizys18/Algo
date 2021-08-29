@@ -13,7 +13,6 @@ def solution(progresses, speeds):
             progresses[idx] += speeds[idx]*passed_day
         idx = 0
         while True:
-
             if progresses[idx] >= 100:
                 completed_count += 1
                 idx += 1
@@ -48,3 +47,7 @@ def solution(progresses, speeds):
 
 
 print(solution(progresses, speeds))
+
+"""
+prepare_kakako에 새로 푼 풀이가 있다.
+"""
