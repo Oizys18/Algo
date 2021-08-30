@@ -1,4 +1,4 @@
-def solution(participant, completion):
+"""def solution(participant, completion):
     mara = {}
     for i,x in enumerate(completion):
         if x not in mara.keys():
@@ -17,3 +17,31 @@ def solution(participant, completion):
             break
     
     return answer
+"""
+
+
+def solution(participant, completion):
+    answer = ''
+    runners_dict = {}
+    for runner in participant:
+        if not runners_dict.get(runner):
+            runners_dict[runner] = 0
+        runners_dict[runner] += 1 
+    for runner in completion:
+        runners_dict[runner] -= 1 
+    for k,v in runners_dict.items():
+        if v:
+            answer = k
+    return answer
+
+
+
+"""
+# 다른사람 코드. 
+# Counter 객체는 뺄셈이 가능 
+
+import collections
+def solution(participant, completion):
+    answer = collections.Counter(participant) - collections.Counter(completion)
+    return list(answer.keys())[0]
+"""
