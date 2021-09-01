@@ -21,6 +21,7 @@ def solution(clothes):
         if not cloth_dict.get(category):
             cloth_dict[category] = 1
         else:cloth_dict[category]+= 1
+        
     for v in cloth_dict.values():
-        answer *= (v+1) # ?????????????
+        answer *= (v+1)
     return answer-1
