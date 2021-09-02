@@ -22,3 +22,19 @@ def solution(number, k):
         # print(check,p,k)
     answer = ''.join(temp)
     return answer
+
+
+#새로 푼 것, 시간초과 + 실패 
+def solution(number, k):
+    answer = ''
+    while k>0:
+        for i in range(len(number)):
+            a = number[:i]+number[i+1:]
+            if number < a:
+                number = a
+                break
+        else:
+            number = number[1:]
+        k-=1 
+    answer = number 
+    return answer
