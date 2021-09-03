@@ -39,15 +39,35 @@ def solution(N, number):
             print(dp)
             return i
         dp.append(temp)
+    return -1
+
+# 해결, 다른사람 코드 참고함 
+# 맨처음 과거 풀이처럼 푼 이유가 있었음 .
+"""
+N을 n개 써서 만들 수 있는 모든 가짓수를 Nn이라고한다면, 
+N1 = 1 
+N2 = N1*N1 + N1-N1 + N1+N1 + N1//N1 
+N3 = N2*N1 + N2-N1 + N2+N1 + N2//N1 ..... 이다. 
+
+즉 N 5개로 만들 수 있는 모든 수는 
+N5 = N1+N4  + N2+N3 이다! 
+그래서 가능한 모든 가짓수를 전부 더해줘야 한다. 
+"""
+
+def solution(N, number):
+    if N == number:
+        return 1
     
-    # for k in range(1,9):
-    #     temp = set()
-    #     for i in dp:
-    #         temp.add(int(str(N)*k))
-    #         temp.add(i+N)
-    #         temp.add(i//N)
-    #         if i*N <= 32000*N:temp.add(i*N)
-    #         if i-N >= 0:temp.add(i-N)
-    #     if number in temp:return k
-    #     dp = dp.union(temp)
+    answer = 0
+    dp = [{int(str(N)*i)} if i else 0 for i in range(0,9)]
+    for i in range(2,9):   
+        for j in range(1,i):  
+            for x in dp[j]:    
+                for y in dp[i-j]:      
+                    dp[i].add(x*y)
+                    dp[i].add(x+y)
+                    if x-y>0:dp[i].add(x-y)
+                    if x: dp[i].add(y//x)
+        if number in dp[i]:
+            return i
     return -1
