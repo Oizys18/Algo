@@ -31,7 +31,7 @@ def solution(begin, target, words):
     answer = min_cnt
     return answer
 
-
+# DFS로 풀었음 
 def solution(begin, target, words):
     answer = 0
     N = len(begin)
@@ -71,3 +71,30 @@ def solution(begin, target, words):
 다른 사람들의 코드를 보니 bfs로 많이 풀었더라. 
 문제를 다시 생각해보니 거리를 재는 문제라서 bfs로 푸는게 좋을지도.. 
 """
+
+# BFS로 풀어봤다. 
+def solution(begin, target, words):
+    answer = 0
+    N = len(begin)
+    M = len(words)
+    def diff(w1,w2):
+        cnt = 0 
+        for i in range(len(w1)):
+            if w1[i] != w2[i]:
+                cnt += 1 
+                if cnt > 1: return False 
+        return cnt == 1
+    
+    q = []
+    visit = [0]*M
+    q.append((begin,0))
+    while q:
+        now,depth = q.pop(0)
+        if now == target:
+            answer = depth
+        for i in range(M):
+            if diff(now,words[i]) and not visit[i]:
+                q.append((words[i],depth+1))
+                visit[i]= 1
+                
+    return answer
