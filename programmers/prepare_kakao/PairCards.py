@@ -19,7 +19,10 @@ def solution(board, r, c):
         for y in range(N):
             if board[x][y]:
                 cards[board[x][y]].append((x,y))
-    
+    def getDist(x1,y1,x2,y2,mat) -> int:
+        # return dist 
+        pass
+
     def ctrlY(x1,y1,y2,mat):
         if y1 < y2:
             for i in range(y1+1,N):                
@@ -46,43 +49,12 @@ def solution(board, r, c):
     mnTemp = 100
     for pattern in perm(cards.keys()):
         mat = deepcopy(board)
-        temp = 0
+        patternTotal = 0
         for k in pattern:
             (x1,y1),(x2,y2) = cards[k]
-            far = 0
-            q = [(x1,y1,0)]
-            visit = [[0]*N for _ in range(N)]
-            visit[x1][y1]=1
-            while q:
-                x,y,depth = q.pop(0)
-                if (x,y) == (x2,y2):
-                    far = depth
-                    break
-                if x!= x2:
-                    nx,ny = ctrlX(y,x,x2,mat)
-                    if not visit[nx][ny]:
-                        visit[nx][ny] = 1
-                        q.append((nx,ny,depth+1))
-                    if x1<x2:
-                        nx,ny = x+1,y
-                    else: nx,ny = x-1,y
-                    if not visit[nx][ny]:
-                        visit[nx][ny]=1
-                        q.append((nx,ny,depth+1))
-                if y!= y2:
-                    nx,ny = ctrlY(x,y,y2,mat)
-                    if not visit[nx][ny]:
-                        visit[nx][ny] = 1 
-                        q.append((nx,ny,depth+1))
-                    if y<y2:
-                        nx,ny = x,y+1
-                    else:nx,ny=x,y-1
-                    if not visit[nx][ny]:
-                        visit[nx][ny]=1
-                        q.append((nx,ny,depth+1))
-            temp += far 
+            patternTotal += getDist(x1,y1,x2,y2,mat)
             mat[x1][y1] = 0
             mat[x2][y2] = 0 
-        mnTemp = min(temp,mnTemp)
+        mnTemp = min(patternTotal,mnTemp)
     
     return answer
