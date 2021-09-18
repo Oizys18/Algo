@@ -19,42 +19,75 @@ def solution(board, r, c):
         for y in range(N):
             if board[x][y]:
                 cards[board[x][y]].append((x,y))
-    def getDist(x1,y1,x2,y2,mat) -> int:
-        # return dist 
-        pass
+    def getDist(x1,y1,x2,y2,mat):
+        q = []
+        q.append((x1,y1,0))
+        visit = [[0]*N for _ in range(N)]
+        dist = 0
+        while q:
+            x,y,depth = q.pop(0)
+            if (x,y)==(x2,y2):
+                dist = depth
+                break
+            if x !=x2:
+                if x < x2:
+                    nx = x+1
+                elif x > x2: 
+                    nx = x-1
+                if mat[nx][y]:
+                    if not visit[nx][y]:
+                        visit[nx][y] = 1 
+                        q.append((nx,y,depth+1))
+                while x!=x2:
+                    if x<x2:
+                        nx = x+1
+                    else: 
+                        nx = x-1
+                    if mat[nx][y]:
+                        if not visit[nx][y]:
+                            visit[nx][y] = 1 
+                            q.append((nx,y,depth+1))
+                        break 
+                    else:x = nx
+            if y !=y2:
+                if y < y2: 
+                    ny = y +1
+                elif y > y2: 
+                    ny = y -1 
+                if mat[x][ny]:
+                    if not visit[x][ny]:
+                        visit[x][ny] = 1
+                        q.append((x,ny,depth+1))   
+                while y!=y2:
+                    if y < y2: 
+                        ny = y +1
+                    else: 
+                        ny = y -1 
+                    if mat[x][ny]:
+                        if not visit[x][ny]:
+                            visit[x][ny] = 1
+                            q.append((x,ny,depth+1))
+                        break
+                    else:y = ny 
+        return dist
 
-    def ctrlY(x1,y1,y2,mat):
-        if y1 < y2:
-            for i in range(y1+1,N):                
-                if mat[x1][i]:
-                    return x1,i
-            return x1,N-1
-        else:
-            for i in range(y2-1,0,-1):
-                if mat[x1][i]:
-                    return x1,i
-            return x1,0
-    def ctrlX(y1,x1,x2,mat):
-        if x1<x2:
-            for i in range(x1+1,N):
-                if mat[i][y1]:
-                    return i,y1
-            return N-1,y1
-        else:
-            for i in range(x2-1,0,-1):
-                if mat[i][y1]:
-                    return i,y1
-            return 0,y1
-        
-    mnTemp = 100
+    mnTotal = 100
     for pattern in perm(cards.keys()):
         mat = deepcopy(board)
         patternTotal = 0
-        for k in pattern:
+        for i,k in enumerate(pattern):
             (x1,y1),(x2,y2) = cards[k]
+            patternTotal += getDist(r,c,x1,y1,mat)
             patternTotal += getDist(x1,y1,x2,y2,mat)
+            patternTotal += 2
+            r,c = x2,y2
             mat[x1][y1] = 0
             mat[x2][y2] = 0 
-        mnTemp = min(patternTotal,mnTemp)
-    
-    return answer
+        mnTotal = min(mnTotal,patternTotal)
+    print(mnTotal)
+    return answer 
+
+board= [[1,0,0,3],[2,0,0,0],[0,0,0,2],[3,0,1,0]]
+r = 1
+c = 0
+print(solution(board,r,c))
