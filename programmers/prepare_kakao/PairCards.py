@@ -29,7 +29,7 @@ def solution(board, r, c):
             if (x,y)==(x2,y2):
                 dist = depth
                 break
-            if x !=x2:
+            if x !=x2:1
                 if x < x2:
                     nx = x+1
                 elif x > x2: 
