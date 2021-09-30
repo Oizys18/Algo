@@ -15,3 +15,7 @@ def solution(scoville, K):
     if min(scoville) < K:
         return -1 
     return answer
+
+"""
+간단한 힙 문제 
+"""
