@@ -12,5 +12,8 @@ def solution(money):
     # 0번째 집을 훔쳤기 때문에 N-2까지 탐색 
     for i in range(2,N-1):
         dp2[i] = max(dp2[i-2]+money[i], dp2[i-1])
-    
     return max(dp[N-1],dp2[N-2])
+
+"""
+문제 난이도와는 별개로 문제가 굳이 도둑질이어야하는가에 대해선 의문이 있다..
+"""
