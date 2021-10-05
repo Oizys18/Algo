@@ -22,8 +22,6 @@ def solution(lines):
     for du in temp:
         for t in range(du[0],du[1]+1):
             check[t] += 1 
-
-    
     print(max(check))
     return answer
 
