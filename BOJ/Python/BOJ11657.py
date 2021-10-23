@@ -4,5 +4,3 @@ sys.stdin= open('BOJ11657.txt','r')
 
 N,M = map(int,sys.stdin.readline().split())
 mat = [[*map(int,sys.stdin.readline().split())] for _ in range(M)]
-print(N,M)
-print(mat)
