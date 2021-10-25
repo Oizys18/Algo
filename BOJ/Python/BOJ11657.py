@@ -16,7 +16,7 @@ pp(line)
 
 """
 벨만포드, 최단거리 알고리즘 중에 음수값이 있어도 상관없는 알고리즘. 
-
+https://deep-learning-study.tistory.com/587
 벨만-포드 알고리즘(Bellman-Ford Algorithm)
 최단 거리를 찾는 알고리즘
 시간복잡도 O(VE) V: 정점 수, E: 간선 수
