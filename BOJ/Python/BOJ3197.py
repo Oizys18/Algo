@@ -5,71 +5,71 @@ from collections import deque
 R,C = map(int,sys.stdin.readline().split())
 mat = [sys.stdin.readline().strip() for _ in range(R)]
 dr = [(0,1),(1,0),(0,-1),(-1,0)]
+q, tq = deque(),deque()
+m, tm = deque(),deque()
 swan = []
-nxt_melt = set()
-ice = set()
+pp(mat)
 
-def isMap(x,y):
-    return 0 <= x <R and 0 <= y < C
+# def isMap(x,y):
+#     return 0 <= x <R and 0 <= y < C
 
-def isAdjacent(x,y):
-    for i in range(4):
-        nx,ny = x+dr[i][0], y+dr[i][1]
-        if isMap(nx,ny) and mat[nx][ny] != 'X':
-            return True
-    else:
-        return False
+# def isAdjacent(x,y):
+#     for i in range(4):
+#         nx,ny = x+dr[i][0], y+dr[i][1]
+#         if isMap(nx,ny) and mat[nx][ny] != 'X':
+#             return True
+#     else:
+#         return False
 
-for x in range(R):
-    for y in range(C):
-        if mat[x][y] == 'L':
-            swan.append((x,y))
-        elif mat[x][y] == 'X':
-            ice.add((x,y))
-            if  isAdjacent(x,y):
-                nxt_melt.add((x,y))
+# for x in range(R):
+#     for y in range(C):
+#         if mat[x][y] == 'L':
+#             swan.append((x,y))
+#         elif mat[x][y] == 'X':
+#             ice.add((x,y))
+#             if  isAdjacent(x,y):
+#                 nxt_melt.add((x,y))
 
-time = 0
-flag = 0 
-while not flag:
-    q = deque()
-    visit = [[0]*C for _ in range(R)]
-    visit[swan[0][0]][swan[0][1]] = 1 
-    q.append((swan[0]))
-    while q: 
-        x,y = q.popleft()
-        for i in range(4):
-            nx, ny = x + dr[i][0], y + dr[i][1] 
-            if ice and (nx,ny) in ice: 
-                continue
-            if isMap(nx,ny) and not visit[nx][ny] :
-                visit[nx][ny] = 1 
-                if (nx,ny) == swan[1]:
-                    print(nx,ny,time)
-                    flag = 1 
-                    break 
-                q.append((nx,ny))
+# time = 0
+# flag = 0 
+# visit = [[0]*C for _ in range(R)]
+# temp_melt = set()
+# while not flag:
+#     q = deque()
+#     if not temp_melt:
+#         visit[swan[0][0]][swan[0][1]] = 1 
+#         q.append((swan[0]))
+#     else:
+#         for x,y in temp_melt:
+#             visit[x][y] = 1 
+#             q.append((x,y))
 
-    if flag: 
-        print(time)
-        break  
+#     while q: 
+#         x,y = q.popleft()
+#         print(x,y,q)
+#         for i in range(4):
+#             nx, ny = x + dr[i][0], y + dr[i][1] 
+#             if ice and (nx,ny) in ice: 
+#                 continue
+#             if isMap(nx,ny) and not visit[nx][ny] :
+#                 visit[nx][ny] = 1 
+#                 if (nx,ny) == swan[1]:
+#                     flag = 1 
+#                     break 
+#                 q.append((nx,ny))
 
-    temp_melt = set()
-    for x,y in ice:
-        for i in range(4):
-            nx,ny = dr[i][0]+x, dr[i][1]+y
-            if isMap(nx,ny) and (nx,ny) in nxt_melt:
-                temp_melt.add((x,y))
-    print("ice")
-    pp(ice)
-    print(length(ice))
-    print("nxt_melt")32
-    pp(nxt_melt)
-    print(length(nxt_melt))
-    ice = ice.difference_update(nxt_melt)
-    pp(ice)
-    nxt_melt = temp_melt
-    time += 1 
+#     if flag: 
+#         print(time)
+#         break  
+#     temp_melt = set()
+#     for x,y in ice:
+#         for i in range(4):
+#             nx,ny = dr[i][0]+x, dr[i][1]+y
+#             if isMap(nx,ny) and (nx,ny) in nxt_melt:
+#                 temp_melt.add((x,y))
+#     ice = ice.difference(nxt_melt)
+#     nxt_melt = temp_melt
+#     time += 1 
 
 
 
