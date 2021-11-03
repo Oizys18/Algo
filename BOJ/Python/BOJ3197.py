@@ -3,15 +3,79 @@ import sys
 sys.stdin= open('BOJ3197.txt','r')
 from collections import deque
 R,C = map(int,sys.stdin.readline().split())
-mat = [sys.stdin.readline().strip() for _ in range(R)]
-dr = [(0,1),(1,0),(0,-1),(-1,0)]
-q, tq = deque(),deque()
-m, tm = deque(),deque()
-swan = []
-pp(mat)
 
-# def isMap(x,y):
-#     return 0 <= x <R and 0 <= y < C
+mat = [list(sys.stdin.readline().strip()) for _ in range(R)]
+dr = [(0,1),(1,0),(0,-1),(-1,0)]
+waterQ, waterTQ = deque(),deque()
+swanQ, swanTQ = deque(),deque()
+swan = []
+
+water_visit = [[0]*C for _ in range(R)]
+swan_visit = [[0]*C for _ in range(R)]
+for x in range(R):
+    for y in range(C):
+        if mat[x][y] == 'L':
+            mat[x][y] = '.'
+            swan.append((x,y))
+            water_visit[x][y] = 1 
+            waterQ.append((x,y))
+        elif mat[x][y] == '.':
+            waterQ.append((x,y))
+            water_visit[x][y] = 1 
+
+x1,y1 = swan.pop()
+x2,y2 = swan.pop()
+swanQ.append((x1,y1))
+swan_visit[x1][y1] = 1 
+
+def isMap(x,y):
+    return 0 <= x <R and 0 <= y < C
+
+def bfs():
+    while swanQ:
+        x,y = swanQ.popleft()
+        if x==x2 and y == y2:
+            return True 
+        for i in range(4):
+            nx,ny = x+dr[i][0], y+dr[i][1]
+            if isMap(nx,ny) and not swan_visit[nx][ny]: 
+                if mat[nx][ny] == '.':
+                    swanQ.append((nx,ny))
+                else:
+                    swanTQ.append((nx,ny))  
+                swan_visit[nx][ny] = 1 
+    return False 
+    
+def melt():
+    while waterQ:
+        x,y = waterQ.popleft()
+        mat[x][y] = '.'
+        for i in range(4):
+            nx,ny = x+dr[i][0], y+dr[i][1]
+            if isMap(nx,ny) and not water_visit[nx][ny] and mat[nx][ny] == 'X':
+                waterTQ.append((nx,ny))
+                water_visit[nx][ny] = 1
+time = 0 
+while True:
+    melt()
+    if bfs():
+        print(time)
+        break 
+    waterQ,swanQ = waterTQ, swanTQ
+    waterTQ, swanTQ = deque(), deque() 
+    time += 1 
+
+""" 
+1. 백조 위치 특정 
+2. 물의 위치 저장 -> waterQ -> dr 확인하면서 주변에 얼음 있으면 iceQ에 넣기  
+3. 얼음 위치 저장 -> iceQ -> pop한 좌표를 녹이기, 주변에 얼음 있으면 iceTQ
+
+물(백조)의 움직임 bfs와 녹는 얼음의 움직임 bfs를 각각 현재,임시의 4개의 큐를 사용해 풀어야한다. 
+
+*그냥 bfs 후 이진탐색으로 time을 찾는 방법도 있는 것 같은데, 이 방법이 더 좋은 풀이 같아서 이 방법으로 풀었다. 
+"""            
+
+
 
 # def isAdjacent(x,y):
 #     for i in range(4):
