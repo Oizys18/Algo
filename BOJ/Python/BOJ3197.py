@@ -61,7 +61,7 @@ while True:
     if bfs():
         print(time)
         break 
-    waterQ,swanQ = waterTQ, swanTQ
+    waterQ, swanQ = waterTQ, swanTQ
     waterTQ, swanTQ = deque(), deque() 
     time += 1 
 
