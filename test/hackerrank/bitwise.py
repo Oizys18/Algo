@@ -48,30 +48,3 @@ def bitwiseEquations(a: [int], b: [int]) -> [int]:
         answer.append(getValue(a[i], b[i]))
 
     return answer
-
-
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
-    a_count = int(input().strip())
-
-    a = []
-
-    for _ in range(a_count):
-        a_item = int(input().strip())
-        a.append(a_item)
-
-    b_count = int(input().strip())
-
-    b = []
-
-    for _ in range(b_count):
-        b_item = int(input().strip())
-        b.append(b_item)
-
-    result = bitwiseEquations(a, b)
-
-    fptr.write('\n'.join(map(str, result)))
-    fptr.write('\n')
-
-    fptr.close()
