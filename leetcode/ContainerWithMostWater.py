@@ -1,16 +1,13 @@
 class Solution:
     # time limit exceeded
     def maxArea(self, height) -> int:
-        # answer = 0
-        # N = len(height)
-        # for i in range(N):
-        #     for j in range(i+1, N):
-        #         water = abs(j-i)*min(height[j], height[i])
-        #         answer = max(water, answer)
-        # return answer
-        #         answer = 0
-        #         left = 0
-        #         right = 0
+        answer = 0
+        N = len(height)
+        for i in range(N):
+            for j in range(i+1, N):
+                water = abs(j-i)*min(height[j], height[i])
+                answer = max(water, answer)
+        return answer
 
         #         for idx,H in enumerate(height):
         # [1,8,6,2,5,4,8,3,7]
