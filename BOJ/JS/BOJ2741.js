@@ -1,10 +1,10 @@
-const fs = require('fs');
+const fs = require("fs");
 
-const input = fs.readFileSync('/dev/stdin').toString();
+const input = fs.readFileSync("/dev/stdin").toString();
 const N = parseInt(input);
 
-let answer = ''
+let answer = "";
 for (let i = 1; i <= N; i++) {
-    answer += i + '\n'
+  answer += i + "\n";
 }
-console.log(answer)
+console.log(answer);
